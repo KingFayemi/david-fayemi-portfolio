@@ -1,7 +1,7 @@
 # Portfolio Hero — project notes
 
 Main file: `index.html` (David Fayemi portfolio).
-Style: editorial — bold grotesque name wordmark, mono labels/nav, Newsreader serif for the summary. Palette: #ffffff / #0a0a0a / #6f6c64, warm placeholder #d7d4cd.
+Style: editorial — bold grotesque name wordmark (Helvetica Neue), mono labels/nav (SF Mono). Palette: #ffffff / #0a0a0a / #6f6c64, warm placeholder #d7d4cd.
 
 ## TODO — to revisit
 - **Heading (hero) section** — refine further if needed.
