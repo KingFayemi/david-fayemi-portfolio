@@ -24,7 +24,9 @@ Open [http://localhost:8080/](http://localhost:8080/)
 
 ## Deploy
 
-Pushes to `main` deploy automatically via [Netlify](https://www.netlify.com/) (see `netlify.toml`).
+Pushes to `main` deploy automatically via [Netlify](https://www.netlify.com/) — see [NETLIFY.md](NETLIFY.md) for first-time setup.
+
+**Repo:** https://github.com/KingFayemi/david-fayemi-portfolio
 
 ## Adding a case study
 
