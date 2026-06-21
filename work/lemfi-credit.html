@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LemFi Credit — David Fayemi</title>
+  <meta name="description" content="Case study: LemFi's credit product suite — product design by David Fayemi. 16K+ users onboarded in the first year of launch.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #ffffff;
+      color: #0a0a0a;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .mono {
+      font-family: ui-monospace, 'SF Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .serif {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px clamp(28px, 4vw, 56px);
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    header a.logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #0a0a0a;
+    }
+    nav {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    nav a {
+      display: inline-block;
+      color: #0a0a0a;
+      text-decoration: none;
+      padding-bottom: 1px;
+    }
+    nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .section-border { border-top: 1px solid #e6e6e6; }
+    .wrap {
+      padding: clamp(40px, 6vh, 80px) clamp(28px, 4vw, 56px);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: clamp(32px, 5vh, 56px);
+    }
+    .meta-row .label { color: #6f6c64; font-size: 13px; }
+    .meta-row h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      max-width: 14ch;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 24px;
+      font-size: 13px;
+      min-width: min(100%, 360px);
+    }
+    .meta-grid dt { color: #6f6c64; margin-bottom: 6px; }
+    .meta-grid dd { color: #0a0a0a; }
+    .stat {
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-top: clamp(24px, 4vh, 40px);
+    }
+    .stat span { color: #6f6c64; font-weight: 400; font-size: 14px; display: block; margin-top: 8px; letter-spacing: 0.04em; }
+    .hero-img {
+      width: 100%;
+      border-top: 1px solid #e6e6e6;
+      border-bottom: 1px solid #e6e6e6;
+      display: block;
+      background: #ededeb;
+    }
+    .hero-img img { width: 100%; height: auto; display: block; vertical-align: middle; }
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(140px, 0.35fr) 1fr;
+      gap: clamp(24px, 4vw, 48px);
+      padding: clamp(36px, 5vh, 64px) 0;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .content-grid:last-of-type { border-bottom: none; }
+    .content-grid h2 {
+      font-size: 13px;
+      color: #6f6c64;
+      font-weight: 500;
+    }
+    .content-grid .body {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #0a0a0a;
+      max-width: 620px;
+    }
+    .content-grid .body p + p { margin-top: 1.1em; }
+    .gallery {
+      display: grid;
+      gap: clamp(20px, 3vw, 32px);
+      margin-top: clamp(40px, 6vh, 64px);
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #e6e6e6;
+      background: #f4f3ee;
+    }
+    footer {
+      border-top: 1px solid #e6e6e6;
+      padding: clamp(40px, 6vh, 72px) clamp(28px, 4vw, 56px);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 32px;
+      font-size: 12px;
+    }
+    footer a { color: #6f6c64; text-decoration: none; }
+    footer a:hover { color: #0a0a0a; }
+    @media (max-width: 720px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="mono">
+  <a class="logo" href="../">David Fayemi</a>
+  <nav>[<a href="../#work">Work</a>,<a href="../#about">About</a>,<a href="../#photos">Photos</a>,<a href="../#contact">Contact</a>]</nav>
+</header>
+
+<section class="wrap section-border">
+  <p class="mono label" style="margin-bottom: 24px;"><a href="../#work" style="color: #6f6c64; text-decoration: none;">← Back to work</a></p>
+  <div class="meta-row">
+    <div>
+      <p class="mono label" style="margin-bottom: 16px;">Case study</p>
+      <h1>LemFi Credit</h1>
+      <p class="stat">16K+<span>users onboarded in first year of launch</span></p>
+    </div>
+    <dl class="meta-grid mono">
+      <div><dt>Company</dt><dd>LemFi</dd></div>
+      <div><dt>Year</dt><dd>2024</dd></div>
+      <div><dt>Role</dt><dd>Senior Product Designer, Credit</dd></div>
+      <div><dt>Discipline</dt><dd>Product Design</dd></div>
+    </dl>
+  </div>
+  <p class="serif" style="font-size: clamp(18px, 2.2vw, 24px); line-height: 1.45; max-width: 720px; color: #2a2a2a;">
+    LemFi's credit product suite serving users across the UK — from the core credit card to Send Now, Pay Later — built for immigrants the financial system was never designed for.
+  </p>
+</section>
+
+<div class="hero-img">
+  <img src="../assets/projects/lemfi-credit/hero.svg" alt="LemFi Credit product screens">
+</div>
+
+<article class="wrap">
+  <div class="content-grid">
+    <h2 class="mono">Context</h2>
+    <div class="body serif">
+      <p>LemFi is a YC-backed fintech building the go-to financial app for immigrants. When I joined the credit team, the company was expanding beyond remittances into lending products that could meet real spending needs for diaspora users in the UK.</p>
+      <p>Credit is high-stakes: trust, clarity, and compliance have to show up in every screen. The suite needed to feel like LemFi — warm, direct, mobile-first — while carrying the weight of regulated financial products.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <h2 class="mono">Role</h2>
+    <div class="body">
+      <p>I founded and lead design across the credit product suite. That spans discovery and UX for the core credit card, Send Now Pay Later, onboarding flows, and the design-system patterns that keep credit experiences consistent with the rest of the app.</p>
+      <p>I work closely with product, engineering, compliance, and brand — translating regulatory constraints into flows people actually understand on a phone.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <h2 class="mono">Problem</h2>
+    <div class="body serif">
+      <p>Immigrant users are often underserved by traditional credit: thin files, unfamiliar product language, and apps that assume a UK-native mental model. We needed to explain eligibility, limits, and repayment without friction — and without hiding the terms that matter.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <h2 class="mono">Process</h2>
+    <div class="body">
+      <p>We started with research on how LemFi users already move money — when they borrow, what they compare against, and where they drop off. I mapped those journeys into a shared credit IA so card and BNPL could reuse components instead of diverging.</p>
+      <p>Prototypes went through compliance review early. We iterated on disclosure patterns, error states, and empty states until support tickets and funnel data showed users could self-serve through activation.</p>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <img src="../assets/projects/lemfi-credit/screen-01.svg" alt="LemFi Credit onboarding flow">
+  </div>
+
+  <div class="content-grid" style="margin-top: clamp(40px, 6vh, 64px);">
+    <h2 class="mono">Outcome</h2>
+    <div class="body serif">
+      <p>The credit suite launched to LemFi users across the UK. In the first year, more than 16,000 users onboarded — validating that clear, immigrant-first credit design could scale inside a remittance-native product.</p>
+      <p>Credit patterns now feed back into LemFi's broader design system, so the next products ship faster without losing the tone that makes LemFi feel human.</p>
+    </div>
+  </div>
+</article>
+
+<footer class="mono">
+  <div>
+    <p style="color: #0a0a0a; margin-bottom: 12px;">Next project</p>
+    <p><a href="https://templates.raynaui.com/" target="_blank" rel="noopener">Rayna UI →</a></p>
+  </div>
+  <div style="text-align: right;">
+    <p style="margin-bottom: 8px;"><a href="../#work">All work</a></p>
+    <p><a href="mailto:fayemidavid@gmail.com">fayemidavid@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

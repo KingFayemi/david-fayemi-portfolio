@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#ededeb"/>
+  <rect x="120" y="100" width="520" height="700" rx="32" fill="#d7d4cd" stroke="#c8c4bb" stroke-width="2"/>
+  <rect x="720" y="180" width="760" height="56" rx="10" fill="#0a0a0a" opacity="0.1"/>
+  <rect x="720" y="280" width="640" height="40" rx="8" fill="#0a0a0a" opacity="0.07"/>
+  <rect x="720" y="360" width="680" height="40" rx="8" fill="#0a0a0a" opacity="0.07"/>
+  <rect x="720" y="480" width="760" height="280" rx="20" fill="#0a0a0a" opacity="0.05"/>
+  <text x="800" y="820" font-family="ui-monospace,monospace" font-size="32" letter-spacing="0.12em" fill="#6f6c64">LEMFICREDIT · HERO PLACEHOLDER</text>
+</svg>
