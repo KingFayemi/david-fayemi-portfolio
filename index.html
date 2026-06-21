@@ -36,22 +36,166 @@
   @keyframes lightboxIn { from { transform: scale(0.86); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   @keyframes marqueeLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes marqueeRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+  html, body { overflow-x: clip; max-width: 100%; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+  @media (max-width: 900px) {
+    .site-header { padding: 12px 20px !important; gap: 12px !important; }
+    .site-header nav { font-size: 11px !important; letter-spacing: 0.06em !important; }
+
+    .hero-section {
+      min-height: clamp(420px, 62vh, 560px) !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+      padding: 32px 20px 28px !important;
+      gap: 28px;
+    }
+    #hero-name { transform: none !important; flex: none; }
+    .hero-intro {
+      position: static !important;
+      max-width: none !important;
+      order: 2;
+    }
+    .hero-intro p { font-size: 11px !important; line-height: 1.55 !important; }
+
+    #work-pin { height: auto !important; }
+    #work-pin > .work-sticky {
+      position: relative !important;
+      top: auto !important;
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+      padding-bottom: 32px !important;
+    }
+    #work-grid-layout {
+      grid-template-columns: 1fr !important;
+      padding-right: 0 !important;
+      margin-top: 20px !important;
+      gap: 0;
+    }
+    #work-grid-layout > .work-preview {
+      order: -1;
+      min-height: min(72vw, 420px) !important;
+      height: min(72vw, 420px) !important;
+    }
+    #work-pin > .work-sticky > div:first-child {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      font-size: 12px !important;
+    }
+    #work-grid-layout > .work-list { padding: 20px 20px 28px !important; }
+    #work-grid-layout > .work-list > div > div {
+      padding: 4px 0;
+      min-height: 44px;
+      align-items: center;
+    }
+    #work-caption {
+      grid-template-columns: 1fr !important;
+      padding: 0 20px !important;
+      margin-top: 0 !important;
+    }
+    #work-caption > .work-caption-spacer { display: none; }
+    #grid-cursor { display: none !important; }
+
+    #work-index { min-height: 0 !important; padding: 24px 20px 48px !important; }
+    #work-index .index-cols { display: none !important; }
+    #work-index .index-row-grid {
+      grid-template-columns: 1fr !important;
+      gap: 10px !important;
+      padding: 18px 0 !important;
+    }
+    #work-index .index-row-grid > div:nth-child(2),
+    #work-index .index-row-grid > div:nth-child(4),
+    #work-index .index-row-grid > div:nth-child(5) {
+      font-size: 12px !important;
+      color: #6f6c64 !important;
+    }
+    #work-index .index-row-grid > div:nth-child(3) {
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+    }
+    #work-index .index-row-wrap { margin: 0 -20px !important; padding: 0 20px !important; }
+    #index-preview { display: none !important; }
+
+    #about { padding: 36px 20px 56px !important; gap: 28px !important; min-height: 0 !important; }
+    #about-panels { height: auto !important; min-height: 0 !important; }
+    #about-panels .about-block {
+      flex-direction: column !important;
+      gap: 16px !important;
+    }
+    #about-panels .about-block > div:first-child { max-width: 28ch; }
+    #about-panels .about-block > div:last-child { flex: 1 1 auto !important; max-width: none !important; width: 100%; }
+    #about-panels .about-table-row {
+      grid-template-columns: 1fr !important;
+      gap: 4px 0 !important;
+      padding: 14px 0 !important;
+    }
+    #about-panels .about-table-row > div:first-child { white-space: normal !important; }
+    #about-panels .about-table-row.recognition-row {
+      grid-template-columns: 1fr !important;
+    }
+    #about-panels .about-table-row.recognition-row > div:last-child {
+      white-space: normal !important;
+      text-align: left !important;
+    }
+
+    #photos { height: 110vh !important; }
+    #photos .photos-head {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 8px !important;
+      top: 10vh !important;
+      padding: 0 20px !important;
+      font-size: 11px !important;
+    }
+    #photos-strip { gap: 24px !important; padding: 0 20px !important; }
+    #photos-strip > image-slot {
+      width: clamp(130px, 38vw, 180px) !important;
+      height: clamp(182px, 53vw, 252px) !important;
+    }
+    #photos .photos-hint { left: 20px !important; bottom: 10vh !important; font-size: 11px !important; max-width: 16em; line-height: 1.45; }
+
+    #contact { height: 180vh !important; }
+    #talk-left, #talk-right { font-size: clamp(36px, 14vw, 72px) !important; }
+    #talk-footer {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 24px !important;
+      padding: 20px !important;
+    }
+    #talk-footer > div:last-child { text-align: left !important; width: 100%; }
+  }
+
+  @media (max-width: 520px) {
+    .site-header .header-clock { display: none; }
+    .site-header { justify-content: space-between !important; }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    #photos-strip:hover > image-slot { opacity: 1 !important; }
+    #photos-strip > image-slot:hover { transform: none !important; opacity: 1 !important; }
+    #photos-cursor { display: none !important; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
 
 <!-- top nav (sticky, page-level) -->
-<header style="position: sticky; top: 0; z-index: 50; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 14px clamp(28px, 4vw, 56px); gap: 24px; flex-wrap: wrap; font-family: ui-monospace, 'SF Mono', monospace;">
+<header class="site-header" style="position: sticky; top: 0; z-index: 50; background: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 14px clamp(28px, 4vw, 56px); gap: 24px; flex-wrap: wrap; font-family: ui-monospace, 'SF Mono', monospace;">
   <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 3px;">
     <a href="#" onClick="{{ onNavClick }}" data-shake="" style="display: inline-block; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #0a0a0a; text-decoration: none; transition: opacity .4s ease, transform .4s ease; opacity: {{ logoOpacity }}; transform: {{ logoTransform }};">David Fayemi</a>
-    <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; white-space: nowrap;">{{ nowStr }}</span>
+    <span class="header-clock" style="font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; white-space: nowrap;">{{ nowStr }}</span>
   </div>
   <div style="display: flex; align-items: center; gap: clamp(16px, 2vw, 28px);">
     <nav style="font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #0a0a0a; white-space: nowrap;">[<a href="#work" onClick="{{ onNavClick }}" data-shake="" style="display: inline-block; color: #0a0a0a; text-decoration: none; border-bottom: {{ navWork }}; padding-bottom: 1px;" style-hover="text-decoration: underline; text-underline-offset: 3px;" style-focus="text-decoration: underline; text-underline-offset: 3px;">Work</a>,<a href="#about" onClick="{{ onNavClick }}" data-shake="" style="display: inline-block; color: #0a0a0a; text-decoration: none; border-bottom: {{ navAbout }}; padding-bottom: 1px;" style-hover="text-decoration: underline; text-underline-offset: 3px;" style-focus="text-decoration: underline; text-underline-offset: 3px;">About</a>,<a href="#photos" onClick="{{ onNavClick }}" data-shake="" style="display: inline-block; color: #0a0a0a; text-decoration: none; border-bottom: {{ navPhotos }}; padding-bottom: 1px;" style-hover="text-decoration: underline; text-underline-offset: 3px;" style-focus="text-decoration: underline; text-underline-offset: 3px;">Photos</a>,<a href="#contact" onClick="{{ onNavClick }}" data-shake="" style="display: inline-block; color: #0a0a0a; text-decoration: none; border-bottom: {{ navContact }}; padding-bottom: 1px;" style-hover="text-decoration: underline; text-underline-offset: 3px;" style-focus="text-decoration: underline; text-underline-offset: 3px;">Contact</a>]</nav>
   </div>
 </header>
 
-<section style="position: relative; min-height: clamp(520px, 72vh, 760px); display: flex; align-items: center; justify-content: center; padding: clamp(28px, 4vw, 56px); background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden;">
+<section class="hero-section" style="position: relative; min-height: clamp(520px, 72vh, 760px); display: flex; align-items: center; justify-content: center; padding: clamp(28px, 4vw, 56px); background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden;">
 
   <!-- name wordmark, centered -->
   <svg id="hero-name" viewBox="0 0 1200 112" width="100%" preserveAspectRatio="xMidYMid meet" style="position: relative; z-index: 1; display: block; overflow: visible; transform: translateY(-6vh);" ref="{{ nameRef }}">
@@ -59,7 +203,7 @@
   </svg>
 
   <!-- intro, bottom-left -->
-  <div style="position: absolute; left: clamp(28px, 4vw, 56px); bottom: clamp(36px, 4.5vw, 56px); max-width: 360px;">
+  <div class="hero-intro" style="position: absolute; left: clamp(28px, 4vw, 56px); bottom: clamp(36px, 4.5vw, 56px); max-width: 360px;">
     <p style="margin: 0; font-family: ui-monospace, 'SF Mono', monospace; font-size: 12px; font-weight: 400; line-height: 1.5; letter-spacing: 0; text-transform: uppercase; color: #2a2a2a; text-wrap: pretty">UK based Senior Product Designer specializing in fintech &amp; design systems. At LemFi I help build credit products that include the people the system was never built for.</p>
   </div>
 
@@ -69,15 +213,15 @@
 <section id="work" style="background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased">
   <sc-if value="{{ isGrid }}" hint-placeholder-val="{{ true }}">
   <div id="work-pin" style="position: relative; height: 330vh;">
-  <div style="position: sticky; top: 60px; height: calc(100vh - 60px); overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6; padding-bottom: clamp(28px, 5vh, 64px);">
+  <div class="work-sticky" style="position: sticky; top: 60px; height: calc(100vh - 60px); overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6; padding-bottom: clamp(28px, 5vh, 64px);">
   <div style="padding: clamp(20px, 2.6vw, 34px) clamp(28px, 4vw, 56px) 0; display: flex; justify-content: space-between; align-items: center; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #0a0a0a;">
     <span>SELECTED WORKS ©2026</span>
     <span>[<span onClick="{{ showGrid }}" data-shake="" style="display: inline-block; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Grid</span>,<span onClick="{{ showIndex }}" data-shake="" style="display: inline-block; cursor: pointer;">Index</span>]</span>
   </div>
-  <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); align-items: stretch; flex: 1 1 auto; min-height: 0; margin-top: clamp(20px, 2.4vw, 38px); padding-right: clamp(28px, 4vw, 56px);">
+  <div id="work-grid-layout" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); align-items: stretch; flex: 1 1 auto; min-height: 0; margin-top: clamp(20px, 2.4vw, 38px); padding-right: clamp(28px, 4vw, 56px);">
 
     <!-- list -->
-    <div style="padding: clamp(8px, 1vw, 16px) clamp(28px, 4vw, 56px) clamp(40px, 5vw, 64px); display: flex; flex-direction: column; justify-content: flex-start;">
+    <div class="work-list" style="padding: clamp(8px, 1vw, 16px) clamp(28px, 4vw, 56px) clamp(40px, 5vw, 64px); display: flex; flex-direction: column; justify-content: flex-start;">
       <div onMouseLeave="{{ clearGridPick }}" style="display: flex; flex-direction: column; gap: clamp(8px, 0.9vw, 14px);">
         <sc-for list="{{ projects }}" as="proj" hint-placeholder-count="7">
           <div onMouseEnter="{{ proj.onEnter }}" onClick="{{ proj.onClick }}" data-shake="" style="display: flex; align-items: center; gap: 0.9em; font-size: clamp(15px, 1.25vw, 22px); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; cursor: pointer; width: fit-content; transition: color .2s ease; color: {{ proj.color }};"><span style="font-size: 0.6em; font-variant-numeric: tabular-nums; opacity: 0.55;">{{ proj.num }}</span>{{ proj.name }}</div>
@@ -86,7 +230,7 @@
     </div>
 
     <!-- preview panel -->
-    <div onMouseMove="{{ onMove }}" onMouseEnter="{{ onPreviewEnter }}" onMouseLeave="{{ onPreviewLeave }}" onClick="{{ openActive }}" style="background-color: {{ panelColor }}; background-image: {{ activeImage }}; background-size: cover; background-position: center; position: relative; width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: {{ panelCursor }};">
+    <div class="work-preview" onMouseMove="{{ onMove }}" onMouseEnter="{{ onPreviewEnter }}" onMouseLeave="{{ onPreviewLeave }}" onClick="{{ openActive }}" style="background-color: {{ panelColor }}; background-image: {{ activeImage }}; background-size: cover; background-position: center; position: relative; width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: {{ panelCursor }};">
       <div style="position: absolute; top: 22px; left: 24px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b6860;">{{ activeIndex }} / {{ total }}</div>
 
       <sc-if value="{{ noImage }}" hint-placeholder-val="{{ true }}">
@@ -99,8 +243,8 @@
     </div>
 
   <!-- caption row (aligned under preview only) -->
-  <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); padding-right: clamp(28px, 4vw, 56px); margin-top: clamp(12px, 1.4vw, 22px);">
-    <div></div>
+  <div id="work-caption" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); padding-right: clamp(28px, 4vw, 56px); margin-top: clamp(12px, 1.4vw, 22px);">
+    <div class="work-caption-spacer"></div>
     <div style="padding: 0 0 clamp(8px, 1.4vw, 20px) 0; font-family: ui-monospace, 'SF Mono', monospace; font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase;">
       <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
         <div>
@@ -120,7 +264,7 @@
 
   <!-- INDEX VIEW -->
   <sc-if value="{{ isIndex }}" hint-placeholder-val="{{ false }}">
-  <div onMouseMove="{{ onMove }}" style="background: #ffffff; color: #0a0a0a; min-height: 92vh; padding: clamp(26px, 3.2vw, 42px) clamp(28px, 4vw, 56px) clamp(48px, 6vw, 80px); font-family: ui-monospace, 'SF Mono', monospace; position: relative; border-top: 1px solid #e6e6e6;">
+  <div id="work-index" onMouseMove="{{ onMove }}" style="background: #ffffff; color: #0a0a0a; min-height: 92vh; padding: clamp(26px, 3.2vw, 42px) clamp(28px, 4vw, 56px) clamp(48px, 6vw, 80px); font-family: ui-monospace, 'SF Mono', monospace; position: relative; border-top: 1px solid #e6e6e6;">
 
     <!-- header -->
     <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: clamp(40px, 5vw, 76px);">
@@ -129,7 +273,7 @@
     </div>
 
     <!-- column heads -->
-    <div style="display: grid; grid-template-columns: 1.3fr 0.8fr 2.3fr 0.5fr 0.85fr; gap: 24px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; padding-bottom: 16px; border-bottom: 1px solid #e6e6e6;">
+    <div class="index-cols" style="display: grid; grid-template-columns: 1.3fr 0.8fr 2.3fr 0.5fr 0.85fr; gap: 24px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; padding-bottom: 16px; border-bottom: 1px solid #e6e6e6;">
       <div>Project Name</div>
       <div>Company</div>
       <div>About</div>
@@ -139,8 +283,8 @@
 
     <!-- rows -->
     <sc-for list="{{ rows }}" as="row" hint-placeholder-count="7">
-      <div onMouseEnter="{{ row.onEnter }}" onMouseLeave="{{ onLeave }}" onClick="{{ row.onClick }}" data-shake="" style="margin: 0 calc(-1 * clamp(28px, 4vw, 56px)); padding: 0 clamp(28px, 4vw, 56px); cursor: {{ row.rowCursor }}; transition: background .15s ease; background: {{ row.bg }};">
-        <div style="display: grid; grid-template-columns: 1.3fr 0.8fr 2.3fr 0.5fr 0.85fr; gap: 24px; align-items: center; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; padding: clamp(15px, 1.5vw, 21px) 0; border-bottom: 1px solid #e6e6e6; transition: color .15s ease; color: {{ row.color }};">
+      <div class="index-row-wrap" onMouseEnter="{{ row.onEnter }}" onMouseLeave="{{ onLeave }}" onClick="{{ row.onClick }}" data-shake="" style="margin: 0 calc(-1 * clamp(28px, 4vw, 56px)); padding: 0 clamp(28px, 4vw, 56px); cursor: {{ row.rowCursor }}; transition: background .15s ease; background: {{ row.bg }};">
+        <div class="index-row-grid" style="display: grid; grid-template-columns: 1.3fr 0.8fr 2.3fr 0.5fr 0.85fr; gap: 24px; align-items: center; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; padding: clamp(15px, 1.5vw, 21px) 0; border-bottom: 1px solid #e6e6e6; transition: color .15s ease; color: {{ row.color }};">
           <div style="font-size: 16px; font-weight: 500;">{{ row.name }}</div>
           <div>{{ row.company }}</div>
           <div style="text-transform: none; letter-spacing: 0; font-size: 13px; line-height: 1.45;">{{ row.about }}<div style="margin-top: 7px;"><strong style="font-weight: 700;">{{ row.stat }}</strong> {{ row.note }}</div></div>
@@ -178,11 +322,11 @@
 <section id="about" style="background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; border-top: 1px solid #e6e6e6; min-height: 70vh; display: flex; flex-direction: column; justify-content: flex-start; gap: clamp(36px, 5vh, 64px); padding: clamp(40px, 6vh, 80px) clamp(28px, 4vw, 56px) clamp(56px, 9vh, 120px);">
 
   <!-- view panels — swapped by the giant-word tabs below; fixed height so the section never reflows -->
-  <div style="height: 392px;">
+  <div id="about-panels" style="height: 392px;">
 
     <!-- ABOUT -->
     <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ true }}">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">HI, I'M DAVID FAYEMI</div>
       <div style="flex: 0 1 620px; display: flex; gap: clamp(28px, 3vw, 56px); align-items: flex-start; flex-wrap: wrap;">
         <div style="flex: 1 1 240px; min-width: 220px; display: flex; flex-direction: column; gap: 1.1em; font-size: 13px; line-height: 1.5; letter-spacing: -0.005em; color: #0a0a0a; text-wrap: pretty;">
@@ -199,50 +343,50 @@
 
     <!-- EXPERIENCE -->
     <sc-if value="{{ isExperience }}" hint-placeholder-val="{{ false }}">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">Places i've worked&nbsp;<span style="letter-spacing: 0.08em;">OVER THE YEARS</span></div>
       <div style="flex: 0 1 660px; display: flex; flex-direction: column; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; border-top: 1px solid #e6e6e6;">
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2023 — Present</div><div style="color: #0a0a0a;">LemFi</div><div style="color: #6f6c64;">Senior Product Designer, Credit</div></div>
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2023 — 2024</div><div style="color: #0a0a0a;">Rayna UI</div><div style="color: #6f6c64;">Design System Lead</div></div>
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2021 — 2023</div><div style="color: #0a0a0a;">Zazuu</div><div style="color: #6f6c64;">Senior Product Designer</div></div>
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2022</div><div style="color: #0a0a0a;">Renmoney</div><div style="color: #6f6c64;">Senior Product Designer · Contract</div></div>
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2021</div><div style="color: #0a0a0a;">Backdrop</div><div style="color: #6f6c64;">Product Designer</div></div>
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2020 — 2021</div><div style="color: #0a0a0a;">SBSC</div><div style="color: #6f6c64;">Product Designer</div></div>
-        <div style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2018</div><div style="color: #0a0a0a;">Hotels.ng</div><div style="color: #6f6c64;">UI Designer</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2023 — Present</div><div style="color: #0a0a0a;">LemFi</div><div style="color: #6f6c64;">Senior Product Designer, Credit</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2023 — 2024</div><div style="color: #0a0a0a;">Rayna UI</div><div style="color: #6f6c64;">Design System Lead</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2021 — 2023</div><div style="color: #0a0a0a;">Zazuu</div><div style="color: #6f6c64;">Senior Product Designer</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2022</div><div style="color: #0a0a0a;">Renmoney</div><div style="color: #6f6c64;">Senior Product Designer · Contract</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2021</div><div style="color: #0a0a0a;">Backdrop</div><div style="color: #6f6c64;">Product Designer</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2020 — 2021</div><div style="color: #0a0a0a;">SBSC</div><div style="color: #6f6c64;">Product Designer</div></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2018</div><div style="color: #0a0a0a;">Hotels.ng</div><div style="color: #6f6c64;">UI Designer</div></div>
       </div>
     </div>
     </sc-if>
 
     <!-- SKILLS -->
     <sc-if value="{{ isSkills }}" hint-placeholder-val="{{ false }}">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">HERE'S WHAT I BRING TO THE TABLE</div>
       <div style="flex: 0 1 620px; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6;">
-        <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">01</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Product Design</span></div>
-        <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">02</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Design Leadership</span></div>
-        <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">03</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Design Systems</span></div>
-        <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">04</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">UX Research</span></div>
-        <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">05</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Prototyping</span></div>
-        <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">06</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Accessibility (WCAG)</span></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">01</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Product Design</span></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">02</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Design Leadership</span></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">03</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Design Systems</span></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">04</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">UX Research</span></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">05</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Prototyping</span></div>
+        <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">06</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Accessibility (WCAG)</span></div>
       </div>
     </div>
     </sc-if>
 
     <!-- RECOGNITION -->
     <sc-if value="{{ isRecognition }}" hint-placeholder-val="{{ false }}">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">IMPACT I've mAde&nbsp;<span style="letter-spacing: 0.08em;">BEYOND WORK</span></div>
       <div style="flex: 0 1 620px; display: flex; flex-direction: column; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; border-top: 1px solid #e6e6e6;">
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Founded, </span><span style="color: #0a0a0a;">Aether Esports</span><span style="color: #6f6c64;"> • Call of Duty Mobile org (Nigeria)</span></div><div style="color: #6f6c64; white-space: nowrap;">2025</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Host, </span><span style="color: #0a0a0a;">The BluePrint Series</span><span style="color: #6f6c64;"> • podcast on design systems</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Published, </span><span style="color: #0a0a0a;">Road Guide to Design Systems</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Co-authored, </span><span style="color: #0a0a0a;">Start</span><span style="color: #6f6c64;"> • book on product management</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Awarded, </span><span style="color: #0a0a0a;">Product Designer of the Year</span><span style="color: #6f6c64;"> • No-Code Tech Summit</span></div><div style="color: #6f6c64; white-space: nowrap;">2023</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Co-built, </span><span style="color: #0a0a0a;">Rayna UI</span><span style="color: #6f6c64;"> • open-source design system</span></div><div style="color: #6f6c64; white-space: nowrap;">2023</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Co-founded, </span><span style="color: #0a0a0a;">Batch</span><span style="color: #6f6c64;"> • motion design community</span></div><div style="color: #6f6c64; white-space: nowrap;">2023</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Mentor, </span><span style="color: #0a0a0a;">Roadtrip</span><span style="color: #6f6c64;"> • design community</span></div><div style="color: #6f6c64; white-space: nowrap;">2022</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Mentored, </span><span style="color: #0a0a0a;">HNG Internship</span></div><div style="color: #6f6c64; white-space: nowrap;">2019 — 2021</div></div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Awarded, </span><span style="color: #0a0a0a;">Most Outstanding Technical Competence in ICT Invention, Development &amp; Creativity</span><span style="color: #6f6c64;"> • McPherson University</span></div><div style="color: #6f6c64; white-space: nowrap;">2019</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Founded, </span><span style="color: #0a0a0a;">Aether Esports</span><span style="color: #6f6c64;"> • Call of Duty Mobile org (Nigeria)</span></div><div style="color: #6f6c64; white-space: nowrap;">2025</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Host, </span><span style="color: #0a0a0a;">The BluePrint Series</span><span style="color: #6f6c64;"> • podcast on design systems</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Published, </span><span style="color: #0a0a0a;">Road Guide to Design Systems</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Co-authored, </span><span style="color: #0a0a0a;">Start</span><span style="color: #6f6c64;"> • book on product management</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Awarded, </span><span style="color: #0a0a0a;">Product Designer of the Year</span><span style="color: #6f6c64;"> • No-Code Tech Summit</span></div><div style="color: #6f6c64; white-space: nowrap;">2023</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Co-built, </span><span style="color: #0a0a0a;">Rayna UI</span><span style="color: #6f6c64;"> • open-source design system</span></div><div style="color: #6f6c64; white-space: nowrap;">2023</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Co-founded, </span><span style="color: #0a0a0a;">Batch</span><span style="color: #6f6c64;"> • motion design community</span></div><div style="color: #6f6c64; white-space: nowrap;">2023</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Mentor, </span><span style="color: #0a0a0a;">Roadtrip</span><span style="color: #6f6c64;"> • design community</span></div><div style="color: #6f6c64; white-space: nowrap;">2022</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Mentored, </span><span style="color: #0a0a0a;">HNG Internship</span></div><div style="color: #6f6c64; white-space: nowrap;">2019 — 2021</div></div>
+        <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Awarded, </span><span style="color: #0a0a0a;">Most Outstanding Technical Competence in ICT Invention, Development &amp; Creativity</span><span style="color: #6f6c64;"> • McPherson University</span></div><div style="color: #6f6c64; white-space: nowrap;">2019</div></div>
       </div>
     </div>
     </sc-if>
@@ -294,7 +438,7 @@
 <!-- TEAM PHOTOS -->
 <section id="photos" style="position: relative; height: 130vh; background: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
   <div style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
-    <div style="position: absolute; top: 13vh; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 0 clamp(28px, 4vw, 56px); font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #f4f3ee;">
+    <div class="photos-head" style="position: absolute; top: 13vh; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 0 clamp(28px, 4vw, 56px); font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #f4f3ee;">
       <span>TEAM PHOTOS OVER THE YEARS</span>
       <span style="color: #8a877e;">[2018 — 2026]</span>
     </div>
@@ -309,7 +453,7 @@
         <image-slot id="photo-7" shape="rect" fit="cover" src="assets/photos/photo-7.svg" placeholder="Drop a photo" style="display: block; flex: none; width: clamp(150px, 11vw, 210px); height: clamp(210px, 15.4vw, 294px); overflow: hidden; position: relative; transform-origin: center; transition: opacity .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);"></image-slot>
       </div>
     </div>
-    <div style="position: absolute; bottom: 13vh; left: clamp(28px, 4vw, 56px); z-index: 2; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #8a877e;">[↓ Scroll down to escape the matrix]</div>
+    <div class="photos-hint" style="position: absolute; bottom: 13vh; left: clamp(28px, 4vw, 56px); z-index: 2; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #8a877e;">[↓ Scroll down to escape the matrix]</div>
   </div>
   <div id="photos-cursor" style="position: fixed; left: 0; top: 0; pointer-events: none; z-index: 60; opacity: 0; transition: opacity .2s ease;">
     <span style="position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); width: 8px; height: 8px; background: #f4f3ee;"></span>
@@ -404,6 +548,13 @@ class Component extends DCLogic {
   componentDidMount() {
     this.setState({ now: this.fmtNow() });
     this._nProjects = this.projects().length;
+    this._mqMobile = window.matchMedia('(max-width: 900px)');
+    this._isMobile = () => this._mqMobile.matches;
+    this._onMobileChange = () => {
+      if (this._isMobile() && this.state.view === 'grid') this.setState({ gridHoverIdx: this.state.active });
+    };
+    this._mqMobile.addEventListener('change', this._onMobileChange);
+    this._onMobileChange();
     this._clock = setInterval(() => this.setState({ now: this.fmtNow() }), 1000);
     // continuous hover shake+blur on clickable actions (delegated)
     this._shakeCur = null;
@@ -449,7 +600,7 @@ class Component extends DCLogic {
         if (tr) tr.style.transform = 'translateX(' + (70 * (1 - e)).toFixed(2) + 'vw)';
       }
       const wk = document.getElementById('work-pin');
-      if (wk) {
+      if (wk && !this._isMobile()) {
         const wr = wk.getBoundingClientRect();
         const wtotal = Math.max(wr.height - window.innerHeight, 1);
         const wp = Math.min(Math.max(-wr.top / wtotal, 0), 1);
@@ -478,18 +629,18 @@ class Component extends DCLogic {
         const vis = fr.top < window.innerHeight * 0.92 && fr.bottom > 0;
         ftrack.style.animationPlayState = vis ? 'running' : 'paused';
       }
-      // index preview: eased cursor-follow
-      const gc = document.getElementById('grid-cursor');
-      if (gc && this._mx != null) {
-        gc.style.transform = 'translate(' + this._mx.toFixed(1) + 'px, ' + this._my.toFixed(1) + 'px)';
-      }
+      // index preview: eased cursor-follow (desktop only)
       const pv = document.getElementById('index-preview');
-      if (pv) {
+      if (pv && !this._isMobile()) {
         if (this._mx == null) { this._mx = window.innerWidth / 2; this._my = window.innerHeight / 2; }
         if (this._px == null || this._snapPreview) { this._px = this._mx; this._py = this._my; this._snapPreview = false; }
         this._px += (this._mx - this._px) * 0.16;
         this._py += (this._my - this._py) * 0.16;
         pv.style.transform = 'translate(-50%, -50%) translate(' + this._px.toFixed(1) + 'px, ' + this._py.toFixed(1) + 'px)';
+      }
+      const gc = document.getElementById('grid-cursor');
+      if (gc && this._mx != null && !this._isMobile()) {
+        gc.style.transform = 'translate(' + this._mx.toFixed(1) + 'px, ' + this._my.toFixed(1) + 'px)';
       }
       // active-section spy for nav underline
       const line = 70;
@@ -588,6 +739,7 @@ class Component extends DCLogic {
     clearInterval(this._clock);
     clearInterval(this._typeT);
     clearInterval(this._photoTypeT);
+    if (this._mqMobile) this._mqMobile.removeEventListener('change', this._onMobileChange);
     document.removeEventListener('mouseover', this._shakeOver);
     document.removeEventListener('mouseout', this._shakeOut);
     document.removeEventListener('keydown', this._onKey);
@@ -663,7 +815,7 @@ class Component extends DCLogic {
       num: String(i + 1).padStart(2, '0'),
       color: i === active ? '#0a0a0a' : (this.props.inactiveInk ?? '#8a8a8a'),
       onEnter: () => this.setState({ gridHoverIdx: i }),
-      onClick: () => openProject(p),
+      onClick: () => { this.setState({ gridHoverIdx: i, active: i }); openProject(p); },
     }));
     const activeProj = list[active];
     return {
