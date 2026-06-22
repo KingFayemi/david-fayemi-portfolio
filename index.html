@@ -62,6 +62,18 @@
     #hero-name:hover .hero-name-slice { opacity: 1; }
   }
 
+  #grid-cursor span:first-child {
+    background: #0a0a0a;
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.22);
+  }
+  #grid-cursor span:last-child {
+    background: #0a0a0a;
+    color: #f4f3ee;
+    padding: 5px 9px;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
+  }
+
   /* label left, content right — grid keeps the table on the right even with long headings */
   #about-panels .about-block {
     display: grid !important;
@@ -262,7 +274,7 @@
 <!-- SELECTED WORKS -->
 <section id="work" style="background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased">
   <sc-if value="{{ isGrid }}" hint-placeholder-val="{{ true }}">
-  <div id="work-pin" style="position: relative; height: 330vh;">
+  <div id="work-pin" style="position: relative; height: 480vh;">
   <div class="work-sticky" style="position: sticky; top: 60px; height: calc(100vh - 60px); overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6; padding-bottom: clamp(28px, 5vh, 64px);">
   <div style="padding: clamp(20px, 2.6vw, 34px) clamp(28px, 4vw, 56px) 0; display: flex; justify-content: space-between; align-items: center; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #0a0a0a;">
     <span>SELECTED WORKS ©2026</span>
@@ -353,8 +365,8 @@
   <!-- grid: cursor-following label -->
   <sc-if value="{{ showGridLabel }}" hint-placeholder-val="{{ false }}">
   <div id="grid-cursor" style="position: fixed; left: 0; top: 0; transform: translate(-9999px, -9999px); pointer-events: none; z-index: 60;">
-    <span style="position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); width: 8px; height: 8px; background: #0a0a0a;"></span>
-    <span style="position: absolute; left: 16px; top: 0; transform: translateY(-50%); font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #0a0a0a; white-space: nowrap;">{{ activeCtaLabel }}</span>
+    <span style="position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); width: 8px; height: 8px; box-sizing: border-box;"></span>
+    <span style="position: absolute; left: 16px; top: 0; transform: translateY(-50%); font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; white-space: nowrap;">{{ activeCtaLabel }}</span>
   </div>
   </sc-if>
 
@@ -601,7 +613,7 @@ class Component extends DCLogic {
       { name: 'Rayna UI', category: 'Design System', company: 'Rayna UI', year: '2023', desc: 'Open source design system built to scale modern UI design for global creators.', stat: '10K+', note: 'downloads of the open-source v1', image: 'assets/projects/rayna-ui/preview.jpg', link: 'https://templates.raynaui.com/', cta: 'View Work' },
       { name: 'Zazuu', category: 'Product Design', company: 'Zazuu', year: '2022', desc: 'Designing for the diaspora: transparency in global money movement.', stat: '100K', note: 'users saving an average of 7% per transfer by designing out hidden fees', image: 'assets/projects/zazuu/preview.jpg', cta: 'Coming Soon', soon: true },
       { name: 'Bele', category: 'Design System', company: 'Zazuu', year: '2022', desc: 'Building Bele: Zazuu\u2019s design system.', stat: '1 month', note: 'to unify the product with our brand\u2019s African visual identity', image: 'assets/projects/bele/preview.jpg', link: 'https://www.youtube.com/watch?v=VV0CweXQllo&ab_channel=Zazuu', cta: 'Watch Video' },
-      { name: 'Renmoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s digital banking app, loans, savings, and payments in one place.', stat: '5M+', note: 'Nigerians served across loans, savings, and payments', image: 'assets/projects/renmoney/preview.jpg', cta: 'Coming Soon', soon: true },
+      { name: 'Renmoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s digital banking app, loans, savings, and payments in one place.', stat: '5M+', note: 'Nigerians served across loans, savings, and payments', image: 'assets/projects/renmoney/preview.jpg', link: 'https://renmoney.com/', cta: 'View Work' },
       { name: 'SmileMoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s POS merchant product for mobile money agents.', stat: '0\u21921', note: 'launched Renmoney\u2019s first merchant POS product', image: 'assets/projects/smilemoney/preview.jpg', cta: 'Coming Soon', soon: true },
     ];
   }
