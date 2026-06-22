@@ -10,12 +10,20 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     @keyframes hoverShakeBlur {
-      0%   { transform: translate(-1.4px, 0.6px); filter: blur(0.7px); }
-      20%  { transform: translate(1.4px, -0.5px); filter: blur(0.7px); }
-      40%  { transform: translate(-1.1px, -0.9px); filter: blur(0.7px); }
-      60%  { transform: translate(1.2px, 0.9px); filter: blur(0.7px); }
-      80%  { transform: translate(-0.9px, 0.4px); filter: blur(0.7px); }
-      100% { transform: translate(-1.4px, 0.6px); filter: blur(0.7px); }
+      0%   { transform: translate(-0.7px, 0.3px); filter: blur(0.35px); }
+      20%  { transform: translate(0.7px, -0.25px); filter: blur(0.35px); }
+      40%  { transform: translate(-0.55px, -0.45px); filter: blur(0.35px); }
+      60%  { transform: translate(0.6px, 0.45px); filter: blur(0.35px); }
+      80%  { transform: translate(-0.45px, 0.2px); filter: blur(0.35px); }
+      100% { transform: translate(-0.7px, 0.3px); filter: blur(0.35px); }
+    }
+    @keyframes hoverShakeBlurBig {
+      0%   { transform: translate(-3px, 1.25px); filter: blur(0.8px); }
+      20%  { transform: translate(3px, -1px);    filter: blur(0.8px); }
+      40%  { transform: translate(-2.5px, -1.75px); filter: blur(0.8px); }
+      60%  { transform: translate(2.5px, 1.75px);  filter: blur(0.8px); }
+      80%  { transform: translate(-2px, 0.75px); filter: blur(0.8px); }
+      100% { transform: translate(-3px, 1.25px); filter: blur(0.8px); }
     }
     [data-shake] { display: inline-block; }
     body {
@@ -63,7 +71,9 @@
       color: #0a0a0a;
       text-decoration: none;
       padding-bottom: 1px;
+      border-bottom: 1px solid transparent;
     }
+    nav.site-nav a.is-active { border-bottom-color: currentColor; }
     nav.site-nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
     .section-border { border-top: 1px solid #e6e6e6; }
     .wrap {
@@ -193,13 +203,16 @@
       line-height: 1.35;
       color: #6f6c64;
       text-decoration: none;
-      display: block;
+      display: inline-block;
+      width: fit-content;
+      padding-bottom: 1px;
+      border-bottom: 1px solid transparent;
       transition: color 0.15s ease;
     }
     .progress-nav a:hover { color: #0a0a0a; }
     .progress-nav a.is-active {
       color: #0a0a0a;
-      font-weight: 700;
+      border-bottom-color: currentColor;
     }
     .case-main {
       min-width: 0;
@@ -375,7 +388,7 @@
 
 <header class="mono">
   <a class="logo" href="../" data-shake>David Fayemi</a>
-  <nav class="site-nav">[<a href="../#work" data-shake>Work</a>,<a href="../#about" data-shake>About</a>,<a href="../#photos" data-shake>Photos</a>,<a href="../#contact" data-shake>Contact</a>]</nav>
+  <nav class="site-nav">[<a href="../#work" class="is-active" data-shake>Work</a>,<a href="../#about" data-shake>About</a>,<a href="../#photos" data-shake>Photos</a>,<a href="../#contact" data-shake>Contact</a>]</nav>
 </header>
 
 <section class="wrap section-border hero">
@@ -652,7 +665,8 @@
     if (el && el !== shakeCur) {
       if (shakeCur) shakeCur.style.animation = '';
       shakeCur = el;
-      shakeCur.style.animation = 'hoverShakeBlur 0.42s ease-in-out infinite';
+      var kf = el.getAttribute('data-shake') === 'big' ? 'hoverShakeBlurBig' : 'hoverShakeBlur';
+      shakeCur.style.animation = kf + ' 0.22s linear infinite';
     }
   });
   document.addEventListener('mouseout', function (e) {

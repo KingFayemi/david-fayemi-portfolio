@@ -17,20 +17,20 @@
   #photos-strip:hover > image-slot { opacity: 0.35; }
   #photos-strip > image-slot:hover { opacity: 1 !important; transform: scale(1.5); z-index: 3; }
   @keyframes hoverShakeBlur {
-    0%   { transform: translate(-1.4px, 0.6px); filter: blur(0.7px); }
-    20%  { transform: translate(1.4px, -0.5px); filter: blur(0.7px); }
-    40%  { transform: translate(-1.1px, -0.9px); filter: blur(0.7px); }
-    60%  { transform: translate(1.2px, 0.9px); filter: blur(0.7px); }
-    80%  { transform: translate(-0.9px, 0.4px); filter: blur(0.7px); }
-    100% { transform: translate(-1.4px, 0.6px); filter: blur(0.7px); }
+    0%   { transform: translate(-0.7px, 0.3px); filter: blur(0.35px); }
+    20%  { transform: translate(0.7px, -0.25px); filter: blur(0.35px); }
+    40%  { transform: translate(-0.55px, -0.45px); filter: blur(0.35px); }
+    60%  { transform: translate(0.6px, 0.45px); filter: blur(0.35px); }
+    80%  { transform: translate(-0.45px, 0.2px); filter: blur(0.35px); }
+    100% { transform: translate(-0.7px, 0.3px); filter: blur(0.35px); }
   }
   @keyframes hoverShakeBlurBig {
-    0%   { transform: translate(-6px, 2.5px); filter: blur(1.6px); }
-    20%  { transform: translate(6px, -2px);   filter: blur(1.6px); }
-    40%  { transform: translate(-5px, -3.5px); filter: blur(1.6px); }
-    60%  { transform: translate(5px, 3.5px);  filter: blur(1.6px); }
-    80%  { transform: translate(-4px, 1.5px); filter: blur(1.6px); }
-    100% { transform: translate(-6px, 2.5px); filter: blur(1.6px); }
+    0%   { transform: translate(-3px, 1.25px); filter: blur(0.8px); }
+    20%  { transform: translate(3px, -1px);    filter: blur(0.8px); }
+    40%  { transform: translate(-2.5px, -1.75px); filter: blur(0.8px); }
+    60%  { transform: translate(2.5px, 1.75px);  filter: blur(0.8px); }
+    80%  { transform: translate(-2px, 0.75px); filter: blur(0.8px); }
+    100% { transform: translate(-3px, 1.25px); filter: blur(0.8px); }
   }
   @keyframes lightboxFade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes lightboxIn { from { transform: scale(0.86); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -277,7 +277,7 @@
   <div class="work-sticky" style="position: sticky; top: 60px; height: calc(100vh - 60px); overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6; padding-bottom: clamp(28px, 5vh, 64px);">
   <div style="padding: clamp(20px, 2.6vw, 34px) clamp(28px, 4vw, 56px) 0; display: flex; justify-content: space-between; align-items: center; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #0a0a0a;">
     <span>SELECTED WORKS ©2026</span>
-    <span>[<span onClick="{{ showGrid }}" style="display: inline-block; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Grid</span>,<span onClick="{{ showIndex }}" style="display: inline-block; cursor: pointer;">Index</span>]</span>
+    <span>[<span onClick="{{ showGrid }}" data-shake="" style="display: inline-block; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Grid</span>,<span onClick="{{ showIndex }}" data-shake="" style="display: inline-block; cursor: pointer;">Index</span>]</span>
   </div>
   <div id="work-grid-layout" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); align-items: stretch; flex: 1 1 auto; min-height: 0; margin-top: clamp(20px, 2.4vw, 38px); padding-right: clamp(28px, 4vw, 56px);">
 
@@ -333,7 +333,7 @@
     <!-- header -->
     <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: clamp(40px, 5vw, 76px);">
       <span>SELECTED WORKS ©2026</span>
-      <span>[<span onClick="{{ showGrid }}" style="display: inline-block; cursor: pointer;">Grid</span>,<span onClick="{{ showIndex }}" style="display: inline-block; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Index</span>]</span>
+      <span>[<span onClick="{{ showGrid }}" data-shake="" style="display: inline-block; cursor: pointer;">Grid</span>,<span onClick="{{ showIndex }}" data-shake="" style="display: inline-block; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Index</span>]</span>
     </div>
 
     <!-- column heads -->
@@ -691,7 +691,7 @@ class Component extends DCLogic {
         if (this._shakeCur) this._shakeCur.style.animation = '';
         this._shakeCur = el;
         const kf = el.getAttribute('data-shake') === 'big' ? 'hoverShakeBlurBig' : 'hoverShakeBlur';
-        el.style.animation = kf + ' 0.14s linear infinite';
+        el.style.animation = kf + ' 0.22s linear infinite';
       }
     };
     this._shakeOut = (e) => {
