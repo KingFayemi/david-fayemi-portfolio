@@ -534,7 +534,7 @@
     </div>
     <div style="position: absolute; inset: 0; display: flex; align-items: center; overflow: hidden;">
       <div id="photos-strip" style="display: flex; align-items: center; gap: clamp(36px, 5vw, 90px); padding: 0 clamp(28px, 4vw, 56px); will-change: transform; transform: translateX(0px);">
-        <sc-for list="{{ activePhotos }}" as="photo" hint-placeholder-count="4">
+        <sc-for list="{{ activePhotos }}" as="photo" hint-placeholder-count="8">
           <image-slot id="{{ photo.id }}" shape="rect" fit="cover" src="{{ photo.src }}" placeholder="Drop a photo" style="display: block; flex: none; width: clamp(150px, 11vw, 210px); height: clamp(210px, 15.4vw, 294px); overflow: hidden; position: relative; transform-origin: center; transition: opacity .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);"></image-slot>
         </sc-for>
       </div>
@@ -613,20 +613,46 @@ class Component extends DCLogic {
   }
   teamPhotos() {
     return [
-      { id: 'photo-1', src: 'assets/photos/photo-1.jpg', title: 'HNG Internship, 2018' },
-      { id: 'photo-3', src: 'assets/photos/photo-3.jpg', title: 'SBSC, 2020' },
-      { id: 'photo-4', src: 'assets/photos/photo-4.jpg', title: 'Backdrop, 2021' },
-      { id: 'photo-5', src: 'assets/photos/photo-5.jpg', title: 'Renmoney, 2022' },
-      { id: 'photo-6', src: 'assets/photos/photo-6.jpg', title: 'Zazuu Team, 2022' },
-      { id: 'photo-7', src: 'assets/photos/photo-7.jpg', title: 'LemFi Team, 2024' },
-      { id: 'photo-8', src: 'assets/photos/photo-8.jpg', title: 'LemFi Designers, 2025' },
       { id: 'photo-9', src: 'assets/photos/photo-9.jpg', title: 'LemFi Team UK, 2026' },
+      { id: 'photo-8', src: 'assets/photos/photo-8.jpg', title: 'LemFi Designers, 2025' },
+      { id: 'photo-7', src: 'assets/photos/photo-7.jpg', title: 'LemFi Team, 2024' },
+      { id: 'photo-6', src: 'assets/photos/photo-6.jpg', title: 'Zazuu Team, 2022' },
+      { id: 'photo-5', src: 'assets/photos/photo-5.jpg', title: 'Renmoney, 2022' },
+      { id: 'photo-4', src: 'assets/photos/photo-4.jpg', title: 'Backdrop, 2021' },
+      { id: 'photo-3', src: 'assets/photos/photo-3.jpg', title: 'SBSC, 2020' },
+      { id: 'photo-1', src: 'assets/photos/photo-1.jpg', title: 'HNG Internship, 2018' },
     ];
   }
+  _gallerySrc(file) {
+    return 'assets/gallery/' + file.replace(/ /g, '%20');
+  }
   galleryPhotos() {
-    return [
-      { id: 'gallery-1', src: 'assets/gallery/portrait.jpg', title: 'Portrait, 2026' },
+    const items = [
+      ['The roman bath with fiancee, 2026.JPG', 'The Roman Bath with Fiancée, 2026'],
+      ['Scotland, 2026.jpg', 'Scotland, 2026'],
+      ['Lemfi office, 2026.jpg', 'LemFi Office, 2026'],
+      ['brighton, 2026.JPG', 'Brighton, 2026'],
+      ['London Config, 2025.jpg', 'London Config, 2025'],
+      ['Bath UK with friends, 2025.jpg', 'Bath UK with Friends, 2025'],
+      ['Speaking at UDC, 2024.JPG', 'Speaking at UDC, 2024'],
+      ['Kenya, 2024.jpg', 'Kenya, 2024'],
+      ['Workbuddy launch, 2023.jpg', 'Workbuddy Launch, 2023'],
+      ['RoadTrip community, 2023.jpg', 'RoadTrip Community, 2023'],
+      ['Product Designer of the Year Award, 2023.JPG', 'Product Designer of the Year, 2023'],
+      ['No code tech award, 2023.jpeg', 'No-Code Tech Award, 2023'],
+      ['LemFi party, 2023.jpg', 'LemFi Party, 2023'],
+      ['Zazuu colleague wedding, 2022.jpg', 'Zazuu Colleague Wedding, 2022'],
+      ['Hosted Design Rountable Discussion, 2022.jpg', 'Hosted Design Roundtable, 2022'],
+      ['Cofounding Batch, 2022.jpg', 'Cofounding Batch, 2022'],
+      ['Asa Designers, 2022.jpg', 'Asa Designers, 2022'],
+      ['Mcpherson University award, 2019.jpeg', 'McPherson University Award, 2019'],
+      ['Hotels ng retreat, 2018.jpg', 'Hotels.ng Retreat, 2018'],
     ];
+    return items.map(([file, title], i) => ({
+      id: 'gallery-' + String(i + 1).padStart(2, '0'),
+      src: this._gallerySrc(file),
+      title,
+    }));
   }
   activePhotoList() {
     return (this.state.photoView || 'team') === 'gallery' ? this.galleryPhotos() : this.teamPhotos();
