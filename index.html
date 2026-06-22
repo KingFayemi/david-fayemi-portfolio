@@ -40,6 +40,28 @@
   html, body { overflow-x: clip; max-width: 100%; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
+  #hero-name {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: block;
+    overflow: visible;
+    transform: translateY(-6vh);
+  }
+  #hero-name .hero-name-clean {
+    transition: none;
+  }
+  #hero-name .hero-name-slice {
+    opacity: 0;
+    transform: translateX(var(--hero-shift));
+    transition: none;
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #hero-name:hover .hero-name-clean { opacity: 0; }
+    #hero-name:hover .hero-name-slice { opacity: 1; }
+  }
+
   /* label left, content right — grid keeps the table on the right even with long headings */
   #about-panels .about-block {
     display: grid !important;
@@ -227,10 +249,8 @@
 
 <section class="hero-section" style="position: relative; min-height: clamp(520px, 72vh, 760px); display: flex; align-items: center; justify-content: center; padding: clamp(28px, 4vw, 56px); background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden;">
 
-  <!-- name wordmark, centered -->
-  <svg id="hero-name" viewBox="0 0 1200 112" width="100%" preserveAspectRatio="xMidYMid meet" style="position: relative; z-index: 1; display: block; overflow: visible; transform: translateY(-6vh);" ref="{{ nameRef }}">
-    <text x="0" y="103" textLength="1200" lengthAdjust="spacingAndGlyphs" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="700" font-size="132" letter-spacing="-3" fill="#0a0a0a">DAVID FAYEMI</text>
-  </svg>
+  <!-- name wordmark, centered — shreds on hover like inactive about tabs -->
+  {{ heroName }}
 
   <!-- intro, bottom-left -->
   <div class="hero-intro" style="position: absolute; left: clamp(28px, 4vw, 56px); bottom: clamp(36px, 4.5vw, 56px); max-width: 360px;">
@@ -816,6 +836,49 @@ class Component extends DCLogic {
     document.removeEventListener('keydown', this._onKey);
     cancelAnimationFrame(this._raf);
   }
+  buildHeroName() {
+    const word = 'DAVID FAYEMI';
+    const N = 7;
+    const maxShift = 48; // viewBox units — matches ~0.36em at 132px type
+    const rand = (s) => { const x = Math.sin(s) * 43758.5453; return x - Math.floor(x); };
+    const textAttrs = {
+      x: 0,
+      y: 103,
+      textLength: 1200,
+      lengthAdjust: 'spacingAndGlyphs',
+      fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      fontWeight: 700,
+      fontSize: 132,
+      letterSpacing: -3,
+      fill: '#0a0a0a',
+    };
+    const layers = [];
+    for (let i = 0; i < N; i++) {
+      const top = (i / N) * 100;
+      const bottom = ((N - i - 1) / N) * 100;
+      const t = N > 1 ? (N - 1 - i) / (N - 1) : 0;
+      const jit = (rand(i * 7.13 + 3.37) - 0.5) * 14;
+      const shift = Math.pow(t, 1.5) * maxShift + jit;
+      const clip = 'inset(' + top.toFixed(3) + '% 0 ' + bottom.toFixed(3) + '% 0)';
+      layers.push(React.createElement('g', {
+        key: i,
+        className: 'hero-name-slice',
+        style: {
+          clipPath: clip,
+          WebkitClipPath: clip,
+          ['--hero-shift']: shift.toFixed(2) + 'px',
+        },
+      }, React.createElement('text', textAttrs, word)));
+    }
+    return React.createElement('svg', {
+      id: 'hero-name',
+      ref: this.nameRef,
+      viewBox: '0 0 1200 112',
+      width: '100%',
+      preserveAspectRatio: 'xMidYMid meet',
+      style: { display: 'block', overflow: 'visible' },
+    }, React.createElement('text', Object.assign({ className: 'hero-name-clean' }, textAttrs), word), layers);
+  }
   buildGiant() {
     const active = this.state.panel || 'about';
     const words = [['About', 'about'], ['Experience', 'experience'], ['Skills', 'skills'], ['Footprints', 'recognition']];
@@ -892,7 +955,7 @@ class Component extends DCLogic {
     const activeProj = list[active];
     return {
       nowStr: this.state.now || this.fmtNow(),
-      nameRef: this.nameRef,
+      heroName: this.buildHeroName(),
       giantWords: this.buildGiant(),
       isAbout: (this.state.panel || 'about') === 'about',
       isExperience: this.state.panel === 'experience',
