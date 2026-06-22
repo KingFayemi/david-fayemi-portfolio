@@ -280,7 +280,10 @@
     </div>
 
     <!-- preview panel -->
-    <div class="work-preview" onMouseMove="{{ onMove }}" onMouseEnter="{{ onPreviewEnter }}" onMouseLeave="{{ onPreviewLeave }}" onClick="{{ openActive }}" style="background-color: {{ panelColor }}; background-image: {{ activeImage }}; background-size: cover; background-position: center; position: relative; width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: {{ panelCursor }};">
+    <div class="work-preview" onMouseMove="{{ onMove }}" onMouseEnter="{{ onPreviewEnter }}" onMouseLeave="{{ onPreviewLeave }}" onClick="{{ openActive }}" style="background-color: {{ panelColor }}; position: relative; width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: {{ panelCursor }};">
+      <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ activeImageSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+      </sc-if>
       <div style="position: absolute; top: 22px; left: 24px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b6860;">{{ activeIndex }} / {{ total }}</div>
 
       <sc-if value="{{ noImage }}" hint-placeholder-val="{{ true }}">
@@ -358,11 +361,16 @@
   <!-- floating hover preview -->
   <sc-if value="{{ isIndex }}" hint-placeholder-val="{{ false }}">
   <div id="index-preview" style="position: fixed; left: 0; top: 0; transform: translate(-50%, -50%); width: 300px; pointer-events: none; z-index: 60;">
-    <div style="width: 100%; aspect-ratio: 1 / 1; border-radius: 4px; overflow: hidden; background-color: #d7d4cd; background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 11px); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(0,0,0,0.10); will-change: transform; transition: transform .8s cubic-bezier(.16,1,.3,1); transform: scale({{ previewScale }});">
-      <div style="text-align: center; padding: 0 12%;">
+    <div style="width: 100%; aspect-ratio: 1 / 1; border-radius: 4px; overflow: hidden; background-color: #d7d4cd; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(0,0,0,0.10); will-change: transform; transition: transform .8s cubic-bezier(.16,1,.3,1); transform: scale({{ previewScale }}); position: relative;">
+      <sc-if value="{{ hoverHasImage }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ hoverImageSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+      </sc-if>
+      <sc-if value="{{ hoverNoImage }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: center; padding: 0 12%; background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 11px); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div style="font-weight: 800; font-size: 26px; letter-spacing: -0.02em; color: #15140f; line-height: 0.96; text-wrap: balance;">{{ hoverName }}</div>
         <div style="margin-top: 10px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6b6860;">[PROJECT VISUAL]</div>
       </div>
+      </sc-if>
     </div>
   </div>
   </sc-if>
@@ -588,13 +596,13 @@ class Component extends DCLogic {
   nameRef = React.createRef();
   projects() {
     return [
-      { name: 'LemFi Credit', category: 'Product Design', company: 'LemFi', year: '2024', desc: 'LemFi\u2019s credit product suite serving users across the UK.', stat: '16K+', note: 'users onboarded in first year of launch', cta: 'View Work' },
-      { name: 'Citrus DS 2.0', category: 'Design System', company: 'LemFi', year: '2025', desc: 'LemFi\u2019s next-gen design system accelerated by AI to perfectly align with our new brand identity.', stat: '~40%', note: 'faster design-to-ship across the product org', cta: 'Coming Soon', soon: true },
-      { name: 'Rayna UI', category: 'Design System', company: 'Rayna UI', year: '2023', desc: 'Open source design system built to scale modern UI design for global creators.', stat: '10K+', note: 'downloads of the open-source v1', link: 'https://templates.raynaui.com/', cta: 'View Work' },
-      { name: 'Zazuu', category: 'Product Design', company: 'Zazuu', year: '2022', desc: 'Designing for the diaspora: transparency in global money movement.', stat: '100K', note: 'users saving an average of 7% per transfer by designing out hidden fees', cta: 'Coming Soon', soon: true },
-      { name: 'Bele', category: 'Design System', company: 'Zazuu', year: '2022', desc: 'Building Bele: Zazuu\u2019s design system.', stat: '1 month', note: 'to unify the product with our brand\u2019s African visual identity', link: 'https://www.youtube.com/watch?v=VV0CweXQllo&ab_channel=Zazuu', cta: 'Watch Video' },
-      { name: 'Renmoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s digital banking app, loans, savings, and payments in one place.', stat: '5M+', note: 'Nigerians served across loans, savings, and payments', cta: 'Coming Soon', soon: true },
-      { name: 'SmileMoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s POS merchant product for mobile money agents.', stat: '0\u21921', note: 'launched Renmoney\u2019s first merchant POS product', cta: 'Coming Soon', soon: true },
+      { name: 'LemFi Credit', category: 'Product Design', company: 'LemFi', year: '2024', desc: 'LemFi\u2019s credit product suite serving users across the UK.', stat: '16K+', note: 'users onboarded in first year of launch', image: 'assets/projects/lemfi-credit/preview.jpg', cta: 'View Work' },
+      { name: 'Button tracker', category: 'Design Ops', company: 'LemFi', year: '2026', desc: 'LemFi\u2019s internal tool that bridges data, design & engineering teams by making Figma a source of truth for analytics.', stat: '80\u201385%', note: 'of engineering tracking requirements automated', image: 'assets/projects/button-tracker/preview.jpg', cta: 'Coming Soon', soon: true },
+      { name: 'Rayna UI', category: 'Design System', company: 'Rayna UI', year: '2023', desc: 'Open source design system built to scale modern UI design for global creators.', stat: '10K+', note: 'downloads of the open-source v1', image: 'assets/projects/rayna-ui/preview.jpg', link: 'https://templates.raynaui.com/', cta: 'View Work' },
+      { name: 'Zazuu', category: 'Product Design', company: 'Zazuu', year: '2022', desc: 'Designing for the diaspora: transparency in global money movement.', stat: '100K', note: 'users saving an average of 7% per transfer by designing out hidden fees', image: 'assets/projects/zazuu/preview.jpg', cta: 'Coming Soon', soon: true },
+      { name: 'Bele', category: 'Design System', company: 'Zazuu', year: '2022', desc: 'Building Bele: Zazuu\u2019s design system.', stat: '1 month', note: 'to unify the product with our brand\u2019s African visual identity', image: 'assets/projects/bele/preview.jpg', link: 'https://www.youtube.com/watch?v=VV0CweXQllo&ab_channel=Zazuu', cta: 'Watch Video' },
+      { name: 'Renmoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s digital banking app, loans, savings, and payments in one place.', stat: '5M+', note: 'Nigerians served across loans, savings, and payments', image: 'assets/projects/renmoney/preview.jpg', cta: 'Coming Soon', soon: true },
+      { name: 'SmileMoney', category: 'Product Design', company: 'Renmoney', year: '2021', desc: 'Renmoney\u2019s POS merchant product for mobile money agents.', stat: '0\u21921', note: 'launched Renmoney\u2019s first merchant POS product', image: 'assets/projects/smilemoney/preview.jpg', cta: 'Coming Soon', soon: true },
     ];
   }
   photos() {
@@ -991,6 +999,9 @@ class Component extends DCLogic {
       showPreview: view === 'index' && hi >= 0,
       previewScale: (view === 'index' && hi >= 0) ? '1' : '0',
       hoverName: list[this.state.lastHoverIdx ?? 0].name.toUpperCase(),
+      hoverHasImage: !!list[this.state.lastHoverIdx ?? 0].image,
+      hoverNoImage: !list[this.state.lastHoverIdx ?? 0].image,
+      hoverImageSrc: list[this.state.lastHoverIdx ?? 0].image || '',
       panelColor: this.props.panelColor ?? '#ededeb',
       lightboxOpen: !!this.state.lightboxSrc,
       lightboxBg: this.state.lightboxSrc ? 'url("' + this.state.lightboxSrc + '")' : 'none',
@@ -1000,7 +1011,7 @@ class Component extends DCLogic {
       activeName: list[active].name.toUpperCase(),
       hasImage: !!list[active].image,
       noImage: !list[active].image,
-      activeImage: list[active].image ? 'url("' + list[active].image + '")' : 'none',
+      activeImageSrc: list[active].image || '',
       activeCategory: list[active].category,
       activeYear: list[active].year,
       activeDesc: list[active].desc,
