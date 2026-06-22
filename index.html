@@ -40,6 +40,22 @@
   html, body { overflow-x: clip; max-width: 100%; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
+  /* label left, content right — grid keeps the table on the right even with long headings */
+  #about-panels .about-block {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 660px);
+    align-items: start;
+    column-gap: clamp(40px, 6vw, 90px);
+    row-gap: 18px;
+    flex-wrap: nowrap !important;
+  }
+  #about-panels .about-block > div:last-child {
+    grid-column: 2;
+    width: 100%;
+    max-width: 660px;
+    justify-self: end;
+  }
+
   @media (max-width: 900px) {
     .site-header { padding: 12px 20px !important; gap: 12px !important; }
     .site-header nav { font-size: 11px !important; letter-spacing: 0.06em !important; }
@@ -124,11 +140,20 @@
     #about { padding: 36px 20px 56px !important; gap: 28px !important; min-height: 0 !important; }
     #about-panels { height: auto !important; min-height: 0 !important; }
     #about-panels .about-block {
+      display: flex !important;
       flex-direction: column !important;
+      grid-template-columns: none !important;
       gap: 16px !important;
     }
     #about-panels .about-block > div:first-child { max-width: 28ch; }
-    #about-panels .about-block > div:last-child { flex: 1 1 auto !important; max-width: none !important; width: 100%; }
+    #about-panels .about-block > div:last-child {
+      grid-column: auto !important;
+      flex: 1 1 auto !important;
+      max-width: none !important;
+      width: 100%;
+      justify-self: auto !important;
+      margin-left: 0 !important;
+    }
     #about-panels .about-table-row {
       grid-template-columns: 1fr !important;
       gap: 4px 0 !important;
@@ -326,9 +351,9 @@
 
     <!-- ABOUT -->
     <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ true }}">
-    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: nowrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">HI, I'M DAVID FAYEMI</div>
-      <div style="flex: 0 1 620px; display: flex; gap: clamp(28px, 3vw, 56px); align-items: flex-start; flex-wrap: wrap;">
+      <div style="flex: 0 1 620px; margin-left: auto; display: flex; gap: clamp(28px, 3vw, 56px); align-items: flex-start; flex-wrap: wrap;">
         <div style="flex: 1 1 240px; min-width: 220px; display: flex; flex-direction: column; gap: 1.1em; font-size: 13px; line-height: 1.5; letter-spacing: -0.005em; color: #0a0a0a; text-wrap: pretty;">
           <p style="margin: 0;">I'm a senior product designer building financial products for people the system was never built for. At <span style="text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;">LemFi</span> — a YC-backed fintech building the go-to financial app for immigrants — I founded and lead design across the credit product suite, from the core credit card to <span style="text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;">Send Now, Pay Later</span>.</p>
           <p style="margin: 0;">I was previously appointed Lead Designer during a period of restructuring, leading a small team and the design systems effort alongside my Credit work.</p>
@@ -343,9 +368,9 @@
 
     <!-- EXPERIENCE -->
     <sc-if value="{{ isExperience }}" hint-placeholder-val="{{ false }}">
-    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: nowrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">Places i've worked&nbsp;<span style="letter-spacing: 0.08em;">OVER THE YEARS</span></div>
-      <div style="flex: 0 1 660px; display: flex; flex-direction: column; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; border-top: 1px solid #e6e6e6;">
+      <div style="flex: 0 1 660px; margin-left: auto; display: flex; flex-direction: column; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; border-top: 1px solid #e6e6e6;">
         <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2023 — Present</div><div style="color: #0a0a0a;">LemFi</div><div style="color: #6f6c64;">Senior Product Designer, Credit</div></div>
         <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2023 — 2024</div><div style="color: #0a0a0a;">Rayna UI</div><div style="color: #6f6c64;">Design System Lead</div></div>
         <div class="about-table-row" style="display: grid; grid-template-columns: minmax(92px, 0.6fr) 1fr 1.25fr; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div style="color: #6f6c64; white-space: nowrap;">2021 — 2023</div><div style="color: #0a0a0a;">Zazuu</div><div style="color: #6f6c64;">Senior Product Designer</div></div>
@@ -359,9 +384,9 @@
 
     <!-- SKILLS -->
     <sc-if value="{{ isSkills }}" hint-placeholder-val="{{ false }}">
-    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: nowrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">HERE'S WHAT I BRING TO THE TABLE</div>
-      <div style="flex: 0 1 620px; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6;">
+      <div style="flex: 0 1 620px; margin-left: auto; display: flex; flex-direction: column; border-top: 1px solid #e6e6e6;">
         <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">01</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Product Design</span></div>
         <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">02</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Design Leadership</span></div>
         <div class="about-table-row" style="display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #6f6c64;">03</span><span style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #0a0a0a;">Design Systems</span></div>
@@ -374,9 +399,9 @@
 
     <!-- RECOGNITION -->
     <sc-if value="{{ isRecognition }}" hint-placeholder-val="{{ false }}">
-    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: wrap;">
+    <div class="about-block" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px clamp(40px, 6vw, 90px); flex-wrap: nowrap;">
       <div style="font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6c64; flex: none;">IMPACT I've mAde&nbsp;<span style="letter-spacing: 0.08em;">BEYOND WORK</span></div>
-      <div style="flex: 0 1 620px; display: flex; flex-direction: column; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; border-top: 1px solid #e6e6e6;">
+      <div style="flex: 0 1 620px; margin-left: auto; display: flex; flex-direction: column; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; border-top: 1px solid #e6e6e6;">
         <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Founded, </span><span style="color: #0a0a0a;">Aether Esports</span><span style="color: #6f6c64;"> • Call of Duty Mobile org (Nigeria)</span></div><div style="color: #6f6c64; white-space: nowrap;">2025</div></div>
         <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Host, </span><span style="color: #0a0a0a;">The BluePrint Series</span><span style="color: #6f6c64;"> • podcast on design systems</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
         <div class="about-table-row recognition-row" style="display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #e6e6e6;"><div><span style="color: #6f6c64;">Published, </span><span style="color: #0a0a0a;">Road Guide to Design Systems</span></div><div style="color: #6f6c64; white-space: nowrap;">2024</div></div>
@@ -748,6 +773,18 @@ class Component extends DCLogic {
       if (el) this._scrollToTarget(el, 'auto');
     });
   }
+  _scrollToAboutPanel() {
+    requestAnimationFrame(() => {
+      const el = document.getElementById('about-panels');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const head = 60;
+      const pad = 24;
+      if (r.top < head || r.bottom > window.innerHeight - pad) {
+        this._scrollToTarget(el, 'smooth');
+      }
+    });
+  }
   componentWillUnmount() {
     clearInterval(this._clock);
     clearInterval(this._typeT);
@@ -770,6 +807,7 @@ class Component extends DCLogic {
       const onClick = () => {
         if (this._shakeCur) { this._shakeCur.style.animation = ''; this._shakeCur = null; }
         this.setState({ panel: key });
+        this._scrollToAboutPanel();
       };
       const wrapStyle = { position: 'relative', zIndex: z, marginBottom: '-0.28em', cursor: 'pointer' };
       // active word: clean, un-shredded
