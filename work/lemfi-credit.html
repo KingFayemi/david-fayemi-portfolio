@@ -239,26 +239,24 @@
       padding: 2px 6px;
       vertical-align: middle;
     }
-    .shots {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(16px, 2.5vw, 24px);
+    .shot-full {
       margin-top: clamp(32px, 5vh, 48px);
-    }
-    .shot {
       border: 1px solid #e6e6e6;
-    }
-    .shot .frame {
-      aspect-ratio: 4 / 5;
-    }
-    .shot .lab {
-      padding: 14px 16px;
-      font-size: 13px;
-      border-top: 1px solid #e6e6e6;
+      overflow: hidden;
       background: #ffffff;
     }
-    .shot .lab b { display: block; font-weight: 600; margin-bottom: 2px; }
-    .shot .lab span { color: #6f6c64; font-size: 11px; }
+    .shot-full img,
+    .shot-full .img-placeholder {
+      width: 100%;
+      display: block;
+    }
+    .shot-full img {
+      height: auto;
+    }
+    .shot-full .img-placeholder {
+      aspect-ratio: 21 / 9;
+      min-height: 200px;
+    }
     .note {
       font-size: 13px;
       line-height: 1.55;
@@ -306,7 +304,6 @@
       .content-grid .body,
       .product-head,
       .product-body { margin-left: 0; max-width: none; }
-      .shots { grid-template-columns: 1fr; }
       .note { margin-left: 0; }
     }
     @media (max-width: 720px) {
@@ -331,7 +328,7 @@
   <h1>Building <em>credit</em> for people new to UK credit.</h1>
   <dl class="hero-tags mono">
     <div><dt>Company</dt><dd>LemFi</dd></div>
-    <div><dt>Year</dt><dd>2025–2026</dd></div>
+    <div><dt>Year</dt><dd>2024–2026</dd></div>
     <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
     <div><dt>Discipline</dt><dd>Product Design</dd></div>
   </dl>
@@ -398,19 +395,8 @@
           <p>The instalment card is live as the spine of the credit journey, with <strong>16.8k+ onboarded accounts</strong> at scale: proof the regulated, multi-step flow holds together.</p>
         </div>
     </div>
-    <div class="shots">
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Application flow</b><span class="mono">01 · Instalment</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Create your card</b><span class="mono">02 · Instalment</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Set up Autopay</b><span class="mono">03 · Instalment</span></div>
-      </div>
+    <div class="shot-full">
+      <img src="../assets/projects/lemfi-credit/instalment.jpg" alt="Instalment credit — application flow, card creation, and autopay setup">
     </div>
   </section>
 
@@ -435,19 +421,8 @@
           <p>Send Now Pay Later has become the engine of the suite. <strong>60% of UK credit-line spend</strong> now goes through Send Now Pay Later. <strong>75% of credit customers</strong> have used it at least once, more than card spend.</p>
         </div>
     </div>
-    <div class="shots">
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Pay with credit</b><span class="mono">01 · SNPL</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Fees &amp; instalments</b><span class="mono">02 · SNPL</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Repayment schedule</b><span class="mono">03 · SNPL</span></div>
-      </div>
+    <div class="shot-full">
+      <img src="../assets/projects/lemfi-credit/snpl.jpg" alt="Send Now Pay Later — pay with credit, fees and instalments, repayment schedule">
     </div>
   </section>
 
@@ -474,19 +449,8 @@
           <p>Marketing is now using Monitor in UK acquisition campaigns as a low-commitment first step into lending products.</p>
         </div>
     </div>
-    <div class="shots">
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Your score</b><span class="mono">01 · Monitor</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Thin-file state</b><span class="mono">02 · Monitor</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Full credit report</b><span class="mono">03 · Monitor</span></div>
-      </div>
+    <div class="shot-full">
+      <div class="img-placeholder" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -512,19 +476,8 @@
           <p>That phased approach proves out the more conventional path to the same goal before opening it wider.</p>
         </div>
     </div>
-    <div class="shots">
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Card &amp; limit</b><span class="mono">01 · Revolving</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>APR &amp; pricing</b><span class="mono">02 · Revolving</span></div>
-      </div>
-      <div class="shot">
-        <div class="frame img-placeholder"></div>
-        <div class="lab"><b>Statement</b><span class="mono">03 · Revolving</span></div>
-      </div>
+    <div class="shot-full">
+      <img src="../assets/projects/lemfi-credit/revolving.jpg" alt="Revolving credit card — eligibility, dashboard, and card details">
     </div>
   </section>
 
