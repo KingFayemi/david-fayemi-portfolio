@@ -3,12 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LemFi Credit — David Fayemi</title>
-  <meta name="description" content="Case study: LemFi's credit product suite — product design by David Fayemi. 16K+ users onboarded in the first year of launch.">
+  <title>LemFi Credit, David Fayemi</title>
+  <meta name="description" content="Case study: LemFi Credit, four connected FCA-regulated products for UK newcomers. Lead product design by David Fayemi.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    @keyframes hoverShakeBlur {
+      0%   { transform: translate(-1.4px, 0.6px); filter: blur(0.7px); }
+      20%  { transform: translate(1.4px, -0.5px); filter: blur(0.7px); }
+      40%  { transform: translate(-1.1px, -0.9px); filter: blur(0.7px); }
+      60%  { transform: translate(1.2px, 0.9px); filter: blur(0.7px); }
+      80%  { transform: translate(-0.9px, 0.4px); filter: blur(0.7px); }
+      100% { transform: translate(-1.4px, 0.6px); filter: blur(0.7px); }
+    }
+    [data-shake] { display: inline-block; }
     body {
       background: #ffffff;
       color: #0a0a0a;
@@ -32,6 +41,7 @@
       padding: 14px clamp(28px, 4vw, 56px);
       gap: 24px;
       flex-wrap: wrap;
+      border-bottom: 1px solid #e6e6e6;
     }
     header a.logo {
       font-size: 14px;
@@ -41,97 +51,216 @@
       text-decoration: none;
       color: #0a0a0a;
     }
-    nav {
+    nav.site-nav {
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       white-space: nowrap;
     }
-    nav a {
+    nav.site-nav a {
       display: inline-block;
       color: #0a0a0a;
       text-decoration: none;
       padding-bottom: 1px;
     }
-    nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    nav.site-nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
     .section-border { border-top: 1px solid #e6e6e6; }
     .wrap {
       padding: clamp(40px, 6vh, 80px) clamp(28px, 4vw, 56px);
-      max-width: 1200px;
-      margin: 0 auto;
     }
-    .meta-row {
+    section, article > div { scroll-margin-top: 72px; }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+      max-width: 16ch;
+    }
+    .hero h1 em { font-style: italic; font-weight: 600; }
+    .hero-tags {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 32px;
       flex-wrap: wrap;
-      margin-bottom: clamp(32px, 5vh, 56px);
-    }
-    .meta-row .label { color: #6f6c64; font-size: 13px; }
-    .meta-row h1 {
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      max-width: 14ch;
-    }
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 24px;
+      gap: 8px clamp(20px, 3vw, 32px);
+      margin-top: clamp(24px, 3.5vh, 36px);
       font-size: 13px;
-      min-width: min(100%, 360px);
     }
-    .meta-grid dt { color: #6f6c64; margin-bottom: 6px; }
-    .meta-grid dd { color: #0a0a0a; }
-    .stat {
-      font-size: clamp(18px, 2.5vw, 28px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-top: clamp(24px, 4vh, 40px);
+    .hero-tags dt { color: #6f6c64; margin-bottom: 4px; }
+    .hero-tags dd { color: #0a0a0a; line-height: 1.3; }
+    .hero-img,
+    .img-placeholder {
+      background: #d7d4cd;
     }
-    .stat span { color: #6f6c64; font-weight: 400; font-size: 14px; display: block; margin-top: 8px; letter-spacing: 0.04em; }
     .hero-img {
       width: 100%;
       border-top: 1px solid #e6e6e6;
       border-bottom: 1px solid #e6e6e6;
-      display: block;
-      background: #ededeb;
+      aspect-ratio: 21 / 9;
+      min-height: 200px;
     }
-    .hero-img img { width: 100%; height: auto; display: block; vertical-align: middle; }
-    .content-grid {
+    .case-shell {
       display: grid;
-      grid-template-columns: minmax(140px, 0.35fr) 1fr;
-      gap: clamp(24px, 4vw, 48px);
+      grid-template-columns: minmax(108px, 168px) minmax(0, 1fr);
+      gap: clamp(40px, 6vw, 90px);
+      padding: 0 clamp(28px, 4vw, 56px);
+      align-items: start;
+    }
+    .case-progress {
+      position: sticky;
+      top: 72px;
+      align-self: start;
+      padding: clamp(36px, 5vh, 64px) 0 clamp(40px, 6vh, 80px);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      min-height: calc(100vh - 72px);
+    }
+    .progress-back {
+      font-size: 11px;
+      color: #6f6c64;
+      text-decoration: none;
+    }
+    .progress-back:hover { color: #0a0a0a; }
+    .progress-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+    .progress-nav a {
+      font-size: 11px;
+      line-height: 1.35;
+      color: #6f6c64;
+      text-decoration: none;
+      display: block;
+      transition: color 0.15s ease;
+    }
+    .progress-nav a:hover { color: #0a0a0a; }
+    .progress-nav a.is-active {
+      color: #0a0a0a;
+      font-weight: 700;
+    }
+    .case-main {
+      min-width: 0;
+      padding: clamp(36px, 5vh, 64px) 0 clamp(40px, 6vh, 80px);
+    }
+    .content-grid {
       padding: clamp(36px, 5vh, 64px) 0;
       border-bottom: 1px solid #e6e6e6;
     }
-    .content-grid:last-of-type { border-bottom: none; }
     .content-grid h2 {
       font-size: 13px;
       color: #6f6c64;
       font-weight: 500;
+      max-width: 660px;
+      margin-left: auto;
+      margin-bottom: 20px;
     }
     .content-grid .body {
       font-size: 15px;
       line-height: 1.65;
       color: #0a0a0a;
-      max-width: 620px;
+      max-width: 660px;
+      margin-left: auto;
     }
     .content-grid .body p + p { margin-top: 1.1em; }
-    .gallery {
-      display: grid;
-      gap: clamp(20px, 3vw, 32px);
-      margin-top: clamp(40px, 6vh, 64px);
+    .content-grid .body em { font-style: italic; }
+    .content-grid .body strong { font-weight: 700; }
+    .product {
+      padding: clamp(56px, 8vh, 96px) 0;
+      border-bottom: 1px solid #e6e6e6;
     }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: 1px solid #e6e6e6;
+    .product:last-of-type { border-bottom: none; }
+    .product-head {
+      max-width: 660px;
+      margin-left: auto;
+      margin-bottom: clamp(28px, 4vh, 40px);
+    }
+    .product-head h3 {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0a0a0a;
+      line-height: 1.3;
+    }
+    .product-tag {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6f6c64;
+    }
+    .product-body {
+      max-width: 660px;
+      margin-left: auto;
+    }
+    .bpr-block + .bpr-block {
+      margin-top: clamp(44px, 6vh, 72px);
+    }
+    .bpr-block h4 {
+      font-family: ui-monospace, 'SF Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: #6f6c64;
+    }
+    .bpr-block p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #0a0a0a;
+    }
+    .bpr-block p + p { margin-top: 1.1em; }
+    .bpr-block strong { font-weight: 700; }
+    .bpr-block em { font-style: italic; }
+    .bpr-block .metric {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.65;
+      margin-bottom: 0.35em;
+    }
+    .tbc {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #6f6c64;
+      border: 1px solid #d7d4cd;
       background: #f4f3ee;
+      padding: 2px 6px;
+      vertical-align: middle;
+    }
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2.5vw, 24px);
+      margin-top: clamp(32px, 5vh, 48px);
+    }
+    .shot {
+      border: 1px solid #e6e6e6;
+    }
+    .shot .frame {
+      aspect-ratio: 4 / 5;
+    }
+    .shot .lab {
+      padding: 14px 16px;
+      font-size: 13px;
+      border-top: 1px solid #e6e6e6;
+      background: #ffffff;
+    }
+    .shot .lab b { display: block; font-weight: 600; margin-bottom: 2px; }
+    .shot .lab span { color: #6f6c64; font-size: 11px; }
+    .note {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #6f6c64;
+      font-style: italic;
+      max-width: 660px;
+      margin-left: auto;
+      margin-top: clamp(40px, 6vh, 56px);
+      padding-top: 32px;
+      border-top: 1px solid #e6e6e6;
     }
     footer {
       border-top: 1px solid #e6e6e6;
@@ -145,13 +274,40 @@
     }
     footer a { color: #6f6c64; text-decoration: none; }
     footer a:hover { color: #0a0a0a; }
+    @media (max-width: 900px) {
+      .case-shell { grid-template-columns: 1fr; gap: 0; }
+      .case-progress {
+        position: relative;
+        top: auto;
+        min-height: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px 24px;
+        padding: 20px 0 0;
+        border-bottom: 1px solid #e6e6e6;
+      }
+      .progress-nav {
+        flex: 1 1 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+      }
+      .case-main { padding-top: 28px; }
+      .content-grid h2,
+      .content-grid .body,
+      .product-head,
+      .product-body { margin-left: 0; max-width: none; }
+      .shots { grid-template-columns: 1fr; }
+      .note { margin-left: 0; }
+    }
     @media (max-width: 720px) {
       header { padding: 12px 20px; gap: 12px; }
-      nav { font-size: 11px; letter-spacing: 0.06em; }
+      nav.site-nav { font-size: 11px; letter-spacing: 0.06em; }
       .wrap { padding: 32px 20px; }
-      .meta-row { gap: 20px; margin-bottom: 28px; }
-      .meta-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .content-grid { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+      .case-shell { padding: 0 20px; }
+      .hero-tags { gap: 8px 20px; }
+      .content-grid { padding: 28px 0; }
       footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -159,89 +315,286 @@
 <body>
 
 <header class="mono">
-  <a class="logo" href="../">David Fayemi</a>
-  <nav>[<a href="../#work">Work</a>,<a href="../#about">About</a>,<a href="../#photos">Photos</a>,<a href="../#contact">Contact</a>]</nav>
+  <a class="logo" href="../" data-shake>David Fayemi</a>
+  <nav class="site-nav">[<a href="../#work" data-shake>Work</a>,<a href="../#about" data-shake>About</a>,<a href="../#photos" data-shake>Photos</a>,<a href="../#contact" data-shake>Contact</a>]</nav>
 </header>
 
-<section class="wrap section-border">
-  <p class="mono label" style="margin-bottom: 24px;"><a href="../#work" style="color: #6f6c64; text-decoration: none;">← Back to work</a></p>
-  <div class="meta-row">
-    <div>
-      <p class="mono label" style="margin-bottom: 16px;">Case study</p>
-      <h1>LemFi Credit</h1>
-      <p class="stat">16K+<span>users onboarded in first year of launch</span></p>
-    </div>
-    <dl class="meta-grid mono">
-      <div><dt>Company</dt><dd>LemFi</dd></div>
-      <div><dt>Year</dt><dd>2024</dd></div>
-      <div><dt>Role</dt><dd>Senior Product Designer, Credit</dd></div>
-      <div><dt>Discipline</dt><dd>Product Design</dd></div>
-    </dl>
-  </div>
-  <p style="font-size: clamp(18px, 2.2vw, 24px); line-height: 1.45; max-width: 720px; color: #2a2a2a; letter-spacing: -0.01em;">
-    LemFi's credit product suite serving users across the UK — from the core credit card to Send Now, Pay Later — built for immigrants the financial system was never designed for.
-  </p>
+<section class="wrap section-border hero">
+  <h1>Building <em>credit</em> for people new to UK credit.</h1>
+  <dl class="hero-tags mono">
+    <div><dt>Company</dt><dd>LemFi</dd></div>
+    <div><dt>Year</dt><dd>2025–2026</dd></div>
+    <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+    <div><dt>Discipline</dt><dd>Product Design</dd></div>
+  </dl>
 </section>
 
-<div class="hero-img">
-  <img src="../assets/projects/lemfi-credit/hero.png" alt="LemFi Credit product screens">
-</div>
+<div class="hero-img" role="img" aria-label="LemFi Credit product suite, image placeholder"></div>
 
-<article class="wrap">
-  <div class="content-grid">
+<div class="case-shell">
+  <aside class="case-progress mono" aria-label="Case study progress">
+    <a class="progress-back" href="../#work" data-shake>← Back</a>
+    <nav class="progress-nav">
+      <a href="#responsibility" data-shake>Responsibility</a>
+      <a href="#context" data-shake>Context</a>
+      <a href="#p1" data-shake>Instalment</a>
+      <a href="#p2" data-shake>SNPL</a>
+      <a href="#p3" data-shake>Monitor</a>
+      <a href="#p4" data-shake>Revolving</a>
+    </nav>
+  </aside>
+
+  <div class="case-main">
+<article>
+
+  <div id="responsibility" class="content-grid">
+    <h2 class="mono">My responsibility</h2>
+    <div class="body">
+      <p>I led the design of the LemFi credit product suite. That covered eligibility and onboarding, spend and repayment, arrears, and the handoffs between products. I was the only designer on the team, working with product, engineering, data, compliance, and our card and credit partners.</p>
+    </div>
+  </div>
+
+  <div id="context" class="content-grid">
     <h2 class="mono">Context</h2>
     <div class="body">
-      <p>LemFi is a YC-backed fintech building the go-to financial app for immigrants. When I joined the credit team, the company was expanding beyond remittances into lending products that could meet real spending needs for diaspora users in the UK.</p>
-      <p>Credit is high-stakes: trust, clarity, and compliance have to show up in every screen. The suite needed to feel like LemFi — warm, direct, mobile-first — while carrying the weight of regulated financial products.</p>
+      <p>LemFi helps immigrants send, save, and spend globally. But moving money home is only half of a migrant's financial life, the other half is building one <em>here</em>.</p>
+      <p>Most UK users arrive with a thin credit file, so mainstream lenders have little to go on and often say no. That's what Credit exists to solve: <strong>fair, transparent products that help our users build credit history</strong>, under full UK consumer credit regulation.</p>
+      <p>We built four regulated products under one credit area: a twelve-month instalment card, remittance funded by credit (Send Now Pay Later), a free Equifax score and report (Credit Monitor), and a revolving card for customers who wanted a conventional limit. More than 16,000 users onboarded in the first year.</p>
     </div>
   </div>
 
-  <div class="content-grid">
-    <h2 class="mono">Role</h2>
-    <div class="body">
-      <p>I founded and lead design across the credit product suite. That spans discovery and UX for the core credit card, Send Now Pay Later, onboarding flows, and the design-system patterns that keep credit experiences consistent with the rest of the app.</p>
-      <p>I work closely with product, engineering, compliance, and brand — translating regulatory constraints into flows people actually understand on a phone.</p>
+  <section id="p1" class="product">
+    <div class="product-head">
+      <h3>Instalment Credit</h3>
+      <p class="product-tag mono">01 · Twelve-month instalment card</p>
     </div>
-  </div>
-
-  <div class="content-grid">
-    <h2 class="mono">Problem</h2>
-    <div class="body">
-      <p>Immigrant users are often underserved by traditional credit: thin files, unfamiliar product language, and apps that assume a UK-native mental model. We needed to explain eligibility, limits, and repayment without friction — and without hiding the terms that matter.</p>
+    <div class="product-body">
+        <div class="bpr-block">
+          <h4>Background</h4>
+          <p>Newcomers often have no UK credit history, so lenders decline them by default. We wanted to offer a <strong>first credit line they could actually get approved for</strong>: a virtual card that splits each purchase into twelve monthly instalments.</p>
+          <p>The hardest part for Immigrants is the regulated journey. Users move through a credit decision, e-signed agreement, card creation, and repayment mandate.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Process</h4>
+          <p>I designed the onboarding and verification flow, card provisioning into Apple Pay and Google Pay so the credit was usable from day one. The credit homepage, scheduled payments, and transaction history were also designed so users could see spend and repayments across the twelve-month term.</p>
+          <p>Each flow went through the same test-and-iterate loop from discovery, so what shipped was refined against real user behaviour rather than handed off as a first draft.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Results</h4>
+          <p>The instalment card launched as the entry point to the suite: a loan that lets users spread a purchase across a fixed twelve-month plan.</p>
+          <p>It gave customers a concrete, predictable way to access credit and pay it back, which fit how immigrants manage money in a new country better than open-ended revolving credit.</p>
+          <p>The instalment card is live as the spine of the credit journey, with <strong>16.8k+ onboarded accounts</strong> at scale: proof the regulated, multi-step flow holds together.</p>
+        </div>
     </div>
-  </div>
-
-  <div class="content-grid">
-    <h2 class="mono">Process</h2>
-    <div class="body">
-      <p>We started with research on how LemFi users already move money — when they borrow, what they compare against, and where they drop off. I mapped those journeys into a shared credit IA so card and BNPL could reuse components instead of diverging.</p>
-      <p>Prototypes went through compliance review early. We iterated on disclosure patterns, error states, and empty states until support tickets and funnel data showed users could self-serve through activation.</p>
+    <div class="shots">
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Application flow</b><span class="mono">01 · Instalment</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Create your card</b><span class="mono">02 · Instalment</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Set up Autopay</b><span class="mono">03 · Instalment</span></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="gallery">
-    <img src="../assets/projects/lemfi-credit/screen-01.png" alt="LemFi Credit onboarding flow">
-  </div>
-
-  <div class="content-grid" style="margin-top: clamp(40px, 6vh, 64px);">
-    <h2 class="mono">Outcome</h2>
-    <div class="body">
-      <p>The credit suite launched to LemFi users across the UK. In the first year, more than 16,000 users onboarded — validating that clear, immigrant-first credit design could scale inside a remittance-native product.</p>
-      <p>Credit patterns now feed back into LemFi's broader design system, so the next products ship faster without losing the tone that makes LemFi feel human.</p>
+  <section id="p2" class="product">
+    <div class="product-head">
+      <h3>Send Now Pay Later</h3>
+      <p class="product-tag mono">02 · Credit inside remittance</p>
     </div>
-  </div>
+    <div class="product-body">
+        <div class="bpr-block">
+          <h4>Background</h4>
+          <p>Many customers send money home every month. On a tight month, they either send less or skip the transfer. Send Now Pay Later lets them <strong>send the full amount today and repay over twelve instalments</strong>. Credit funds the transfer; it is not buy-now-pay-later on a purchase.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Process</h4>
+          <p>I researched how users send money home: timing, amounts, and what they compare before they confirm. We shipped a first version that let you boost a transfer with credit. Research and support feedback showed people did not understand what they were buying, so uptake stayed low.</p>
+          <p>I repositioned credit as a payment option inside the send-money flow. The fees and instalments screen breaks out fee, interest, and repayment schedule separately, so the user sees the full cost before they tap send.</p>
+          <p>A credit-funded transfer adds a fee, interest, and an instalment schedule on top of the normal send flow. Support tickets showed customers mixing up those three charges. We had to explain a new product inside an existing flow, under financial-promotion rules.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Results</h4>
+          <p>Send Now Pay Later has become the engine of the suite. <strong>60% of UK credit-line spend</strong> now goes through Send Now Pay Later. <strong>75% of credit customers</strong> have used it at least once, more than card spend.</p>
+        </div>
+    </div>
+    <div class="shots">
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Pay with credit</b><span class="mono">01 · SNPL</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Fees &amp; instalments</b><span class="mono">02 · SNPL</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Repayment schedule</b><span class="mono">03 · SNPL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="p3" class="product">
+    <div class="product-head">
+      <h3>Credit Monitor</h3>
+      <p class="product-tag mono">03 · Free score and report</p>
+    </div>
+    <div class="product-body">
+        <div class="bpr-block">
+          <h4>Background</h4>
+          <p>Thin-file customers often cannot see their credit position at all. Without a score or report, many assume credit is not for them.</p>
+          <p>The problem we set out to solve: give every active customer a <strong>free, plain-language view of their credit score and report</strong>, the lowest-commitment first step into the suite.</p>
+          <p>Also, a large share of users are new to the UK and do not have enough data for a score yet. Showing a number with no explanation reads like a rejection. The thin-file empty state needed as much attention as the screen with a full report.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Process</h4>
+          <p>I designed the flow from score overview through the full credit report. Focusing on making an unfamiliar score feel reassuring, not intimidating, with plain-language labels and short explanations for what moves a score up or down.</p>
+          <p>The thin-file state explains why there is no score yet and what building UK credit history looks like. From there, users can move into Credit or Send Now Pay Later when they are ready.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Results</h4>
+          <p><strong>22k+ customers onboarded</strong>, more than the lending book. Monitor became the widest entry point into the suite before customers applied for a line of credit.</p>
+          <p>Marketing is now using Monitor in UK acquisition campaigns as a low-commitment first step into lending products.</p>
+        </div>
+    </div>
+    <div class="shots">
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Your score</b><span class="mono">01 · Monitor</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Thin-file state</b><span class="mono">02 · Monitor</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Full credit report</b><span class="mono">03 · Monitor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="p4" class="product">
+    <div class="product-head">
+      <h3>Revolving Credit Card</h3>
+      <p class="product-tag mono">04 · Revolving limit</p>
+    </div>
+    <div class="product-body">
+        <div class="bpr-block">
+          <h4>Background</h4>
+          <p>Not everyone wants a fixed instalment plan. Some customers asked for a conventional credit card: an interest-free period and a limit they could carry month to month. With our new credit license, we added a <strong>revolving facility</strong> alongside the instalment product.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Process</h4>
+          <p>I designed for a clearly distinct mental model (revolving vs. instalment) so the two products never blur, and reflected the regulated pricing changes (new APR tiers, cash treatment) plainly in the UI.</p>
+          <p>I also designed an assisted transfer flow that let instalment customers move to revolving credit. It walked users through how the two products differ, so the two credit models did not feel confusing.</p>
+          <p>It went out on a deliberately cautious, phased rollout to a slice of the eligible base, so changes could be validated before wider release.</p>
+        </div>
+        <div class="bpr-block">
+          <h4>Results</h4>
+          <p>The Revolving card is live and ramping. It has taken <strong>600+ applications</strong> through a deliberately cautious rollout to <strong>10% of the eligible base</strong>.</p>
+          <p>That phased approach proves out the more conventional path to the same goal before opening it wider.</p>
+        </div>
+    </div>
+    <div class="shots">
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Card &amp; limit</b><span class="mono">01 · Revolving</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>APR &amp; pricing</b><span class="mono">02 · Revolving</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame img-placeholder"></div>
+        <div class="lab"><b>Statement</b><span class="mono">03 · Revolving</span></div>
+      </div>
+    </div>
+    <p class="note">Visuals are placeholders for Figma frames.</p>
+  </section>
+
 </article>
+  </div>
+</div>
 
 <footer class="mono">
   <div>
     <p style="color: #0a0a0a; margin-bottom: 12px;">Next project</p>
-    <p><a href="https://templates.raynaui.com/" target="_blank" rel="noopener">Rayna UI →</a></p>
+    <p><a href="https://templates.raynaui.com/" target="_blank" rel="noopener" data-shake>Rayna UI →</a></p>
   </div>
   <div style="text-align: right;">
-    <p style="margin-bottom: 8px;"><a href="../#work">All work</a></p>
-    <p><a href="mailto:fayemidavid@gmail.com">fayemidavid@gmail.com</a></p>
+    <p style="margin-bottom: 8px;"><a href="../#work" data-shake>All work</a></p>
+    <p><a href="mailto:fayemidavid@gmail.com" data-shake>fayemidavid@gmail.com</a></p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.progress-nav a[href^="#"]'));
+  var sections = navLinks.map(function (link) {
+    return document.querySelector(link.getAttribute('href'));
+  }).filter(Boolean);
+  var ticking = false;
+
+  function setActive(id) {
+    navLinks.forEach(function (link) {
+      link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+    });
+  }
+
+  function updateActiveSection() {
+    var marker = window.innerHeight * 0.32;
+    var current = sections[0];
+
+    sections.forEach(function (section) {
+      if (section.getBoundingClientRect().top <= marker) current = section;
+    });
+
+    if (current) setActive(current.id);
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateActiveSection);
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function () {
+      updateActiveSection();
+    }, { rootMargin: '-32% 0px -58% 0px', threshold: 0 });
+    sections.forEach(function (section) { observer.observe(section); });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  updateActiveSection();
+
+  var shakeCur = null;
+  document.addEventListener('mouseover', function (e) {
+    var el = e.target && e.target.closest ? e.target.closest('[data-shake]') : null;
+    if (el && el !== shakeCur) {
+      if (shakeCur) shakeCur.style.animation = '';
+      shakeCur = el;
+      shakeCur.style.animation = 'hoverShakeBlur 0.42s ease-in-out infinite';
+    }
+  });
+  document.addEventListener('mouseout', function (e) {
+    if (!shakeCur) return;
+    var to = e.relatedTarget;
+    if (!to || !shakeCur.contains(to)) {
+      shakeCur.style.animation = '';
+      shakeCur = null;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
