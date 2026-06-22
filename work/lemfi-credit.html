@@ -253,6 +253,13 @@
     .shot-full img {
       height: auto;
     }
+    .shot-full video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #d7d4cd;
+    }
     .shot-full .img-placeholder {
       aspect-ratio: 21 / 9;
       min-height: 200px;
@@ -422,7 +429,9 @@
         </div>
     </div>
     <div class="shot-full">
-      <img src="../assets/projects/lemfi-credit/snpl.jpg" alt="Send Now Pay Later — pay with credit, fees and instalments, repayment schedule" width="1024" height="745" decoding="async">
+      <video autoplay muted loop playsinline preload="metadata" aria-label="Send Now Pay Later how-to">
+        <source src="../assets/projects/lemfi-credit/snpl.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -450,7 +459,7 @@
         </div>
     </div>
     <div class="shot-full">
-      <div class="img-placeholder" aria-hidden="true"></div>
+      <img src="../assets/projects/lemfi-credit/monitor.png" alt="Credit Monitor — score overview, thin-file state, and full credit report" width="1920" height="1440" decoding="async">
     </div>
   </section>
 
