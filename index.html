@@ -113,7 +113,7 @@
       <a href="#work">Work</a> · <a href="#about">About</a> ·
       <a href="mailto:fayemidavid@gmail.com">Email</a> ·
       <a href="https://linkedin.com/in/davidfayemi" rel="noopener">LinkedIn</a> ·
-      <a href="assets/david-fayemi-cv.pdf">CV</a>
+      <a href="assets/david-fayemi-cv.pdf">Resume</a>
     </nav>
   </header>
 
@@ -237,6 +237,14 @@
   @keyframes lightboxIn { from { transform: scale(0.86); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   @keyframes marqueeLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes marqueeRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+  #facts {
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #facts.is-dragging { cursor: grabbing; }
 
   html, body { overflow-x: clip; max-width: 100%; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
@@ -671,9 +679,9 @@
 </section>
 
 <!-- FACTS MARQUEE -->
-<section id="facts" style="background: #ffffff; color: #0a0a0a; overflow: hidden; padding: clamp(16px, 2.4vh, 28px) 0; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+<section id="facts" aria-label="Fun facts — drag horizontally to explore" style="background: #ffffff; color: #0a0a0a; overflow: hidden; padding: clamp(16px, 2.4vh, 28px) 0; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
   <div style="overflow: hidden; white-space: nowrap;">
-    <div id="facts-track" style="display: inline-flex; will-change: transform; animation: marqueeLeft 78s linear infinite; animation-play-state: paused;">
+    <div id="facts-track" style="display: inline-flex; will-change: transform;">
       <div style="display: inline-flex; align-items: center;">
         <span style="flex: none; display: inline-block; width: 100vw;"></span>
         <span style="display: inline-flex; align-items: baseline; padding: 0 clamp(30px, 4vw, 70px); font-size: clamp(14px, 1.5vw, 22px); font-weight: 400; letter-spacing: -0.01em;">Here are 10 fun facts about me that you should know.</span>
@@ -782,7 +790,7 @@
           <div style="color: #0a0a0a; margin-bottom: 8px;">Contact</div>
           <a href="mailto:fayemidavid@gmail.com" data-shake="" style="display: block; color: #6f6c64; text-decoration: none;" style-hover="color: #0a0a0a;">Email</a>
           <a href="https://linkedin.com/in/davidfayemi" target="_blank" rel="noopener" data-shake="" style="display: block; color: #6f6c64; text-decoration: none;" style-hover="color: #0a0a0a;">LinkedIn</a>
-          <a href="assets/david-fayemi-cv.pdf" target="_blank" rel="noopener" data-shake="" style="display: block; color: #6f6c64; text-decoration: none;" style-hover="color: #0a0a0a;">CV</a>
+          <a href="assets/david-fayemi-cv.pdf" target="_blank" rel="noopener" data-shake="" style="display: block; color: #6f6c64; text-decoration: none;" style-hover="color: #0a0a0a;">Resume</a>
           <a href="https://open.spotify.com/show/4qulPns4OG4dQsniAYZTHT?si=ea45615663fa41e8&amp;nd=1&amp;dlsi=24b957fd81c64a82" target="_blank" rel="noopener" data-shake="" style="display: block; color: #6f6c64; text-decoration: none;" style-hover="color: #0a0a0a;">The BluePrint Series</a>
         </div>
         <div>
@@ -887,6 +895,7 @@ class Component extends DCLogic {
     this._mqMobile.addEventListener('change', this._onMobileChange);
     this._onMobileChange();
     this._clock = setInterval(() => this.setState({ now: this.fmtNow() }), 1000);
+    this._bindFactsMarquee();
     // continuous hover shake+blur on clickable actions (delegated)
     this._shakeCur = null;
     this._shakeOver = (e) => {
@@ -952,13 +961,25 @@ class Component extends DCLogic {
           strip.style.transform = 'translateX(' + (-max * pp).toFixed(1) + 'px)';
         }
       }
-      // facts marquee: run only while its section is in view
+      // facts marquee: auto-scroll in view; drag handled in _bindFactsMarquee
       const ftrack = document.getElementById('facts-track');
       const fsec = document.getElementById('facts');
-      if (ftrack && fsec) {
+      if (ftrack && fsec && !this._factsDragging) {
         const fr = fsec.getBoundingClientRect();
         const vis = fr.top < window.innerHeight * 0.92 && fr.bottom > 0;
-        ftrack.style.animationPlayState = vis ? 'running' : 'paused';
+        if (vis) {
+          const loop = ftrack.scrollWidth / 2;
+          if (loop > 0) {
+            const now = performance.now();
+            if (this._factsLastT == null) this._factsLastT = now;
+            const dt = now - this._factsLastT;
+            this._factsLastT = now;
+            this._factsOffset = (this._factsOffset + (loop / 78000) * dt) % loop;
+            ftrack.style.transform = 'translateX(' + (-this._factsOffset).toFixed(2) + 'px)';
+          }
+        } else {
+          this._factsLastT = null;
+        }
       }
       // index preview: eased cursor-follow (desktop only)
       const pv = document.getElementById('index-preview');
@@ -992,6 +1013,55 @@ class Component extends DCLogic {
   _resetPhotoStrip() {
     const strip = document.getElementById('photos-strip');
     if (strip) strip.style.transform = 'translateX(0px)';
+  }
+  _bindFactsMarquee() {
+    const sec = document.getElementById('facts');
+    const track = document.getElementById('facts-track');
+    if (!sec || !track || sec._factsBound) return;
+    sec._factsBound = true;
+    this._factsOffset = 0;
+    this._factsDragging = false;
+    this._factsDragX = 0;
+    this._factsLastT = null;
+    const loop = () => track.scrollWidth / 2;
+    const apply = () => {
+      const w = loop();
+      if (!w) return;
+      this._factsOffset = ((this._factsOffset % w) + w) % w;
+      track.style.transform = 'translateX(' + (-this._factsOffset).toFixed(2) + 'px)';
+    };
+    const onDown = (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      this._factsDragging = true;
+      this._factsDragX = e.clientX;
+      this._factsLastT = null;
+      sec.classList.add('is-dragging');
+      sec.setPointerCapture(e.pointerId);
+    };
+    const onMove = (e) => {
+      if (!this._factsDragging) return;
+      const dx = e.clientX - this._factsDragX;
+      this._factsDragX = e.clientX;
+      this._factsOffset -= dx;
+      apply();
+    };
+    const onUp = (e) => {
+      if (!this._factsDragging) return;
+      this._factsDragging = false;
+      sec.classList.remove('is-dragging');
+      try { sec.releasePointerCapture(e.pointerId); } catch {}
+      this._factsLastT = performance.now();
+    };
+    sec.addEventListener('pointerdown', onDown);
+    sec.addEventListener('pointermove', onMove);
+    sec.addEventListener('pointerup', onUp);
+    sec.addEventListener('pointercancel', onUp);
+    this._factsCleanup = () => {
+      sec.removeEventListener('pointerdown', onDown);
+      sec.removeEventListener('pointermove', onMove);
+      sec.removeEventListener('pointerup', onUp);
+      sec.removeEventListener('pointercancel', onUp);
+    };
   }
   _bindPhotoSlots() {
     const lbl = document.getElementById('photos-cursor');
@@ -1128,6 +1198,7 @@ class Component extends DCLogic {
     document.removeEventListener('mouseover', this._shakeOver);
     document.removeEventListener('mouseout', this._shakeOut);
     document.removeEventListener('keydown', this._onKey);
+    if (this._factsCleanup) this._factsCleanup();
     cancelAnimationFrame(this._raf);
   }
   buildHeroName() {
