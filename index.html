@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>David Fayemi — Senior Product Designer</title>
-<meta name="description" content="Portfolio of David Fayemi — Senior Product Designer specializing in fintech and design systems. Credit products at LemFi, design systems, and immigrant-first financial UX.">
+<meta name="description" content="David Fayemi is a UK-based senior product designer in fintech and design systems, leading the credit suite at LemFi. See selected work and case studies.">
 <meta name="author" content="David Fayemi">
 <link rel="canonical" href="https://davidfayemi.com/">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
@@ -116,7 +116,7 @@
   </header>
 
   <main id="work">
-    <h1>Selected Works</h1>
+    <h2>Selected Works</h2>
 
     <article>
       <h2>01 — LemFi Credit</h2>
@@ -204,6 +204,7 @@
   * { box-sizing: border-box; }
   :root { color-scheme: light; }
   html, body { margin: 0; padding: 0; background: #ffffff; color: #0a0a0a; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   #hero-name text { fill: #0a0a0a; }
   @media (max-width: 520px) {
     .site-header > div:last-child {
@@ -458,6 +459,8 @@
 
 <section class="hero-section" style="position: relative; min-height: clamp(520px, 72vh, 760px); display: flex; align-items: center; justify-content: center; padding: clamp(28px, 4vw, 56px); background: #ffffff; color: #0a0a0a; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden;">
 
+  <h1 class="sr-only">David Fayemi — Senior Product Designer</h1>
+
   <!-- name wordmark, centered — shreds on hover like inactive about tabs -->
   {{ heroName }}
 
@@ -491,7 +494,7 @@
     <!-- preview panel -->
     <div class="work-preview" onMouseMove="{{ onMove }}" onMouseEnter="{{ onPreviewEnter }}" onMouseLeave="{{ onPreviewLeave }}" onClick="{{ openActive }}" style="background-color: {{ panelColor }}; position: relative; width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: {{ panelCursor }};">
       <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
-      <img src="{{ activeImageSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+      <img src="{{ activeImageSrc }}" alt="{{ activeName }} — project preview" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
       </sc-if>
       <div style="position: absolute; top: 22px; left: 24px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b6860;">{{ activeIndex }} / {{ total }}</div>
 
@@ -572,7 +575,7 @@
   <div id="index-preview" style="position: fixed; left: 0; top: 0; transform: translate(-50%, -50%); width: 300px; pointer-events: none; z-index: 60;">
     <div style="width: 100%; aspect-ratio: 1 / 1; border-radius: 4px; overflow: hidden; background-color: #d7d4cd; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1); will-change: transform; transition: transform .8s cubic-bezier(.16,1,.3,1); transform: scale({{ previewScale }}); position: relative;">
       <sc-if value="{{ hoverHasImage }}" hint-placeholder-val="{{ false }}">
-      <img src="{{ hoverImageSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+      <img src="{{ hoverImageSrc }}" alt="{{ hoverName }} — project preview" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
       </sc-if>
       <sc-if value="{{ hoverNoImage }}" hint-placeholder-val="{{ true }}">
       <div style="text-align: center; padding: 0 12%; background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 11px); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
@@ -733,7 +736,7 @@
     <div style="position: absolute; inset: 0; display: flex; align-items: center; overflow: hidden;">
       <div id="photos-strip" style="display: flex; align-items: center; gap: clamp(36px, 5vw, 90px); padding: 0 clamp(28px, 4vw, 56px); will-change: transform; transform: translateX(0px);">
         <sc-for list="{{ activePhotos }}" as="photo" hint-placeholder-count="8">
-          <image-slot id="{{ photo.id }}" shape="rect" fit="cover" src="{{ photo.src }}" placeholder="Drop a photo" style="display: block; flex: none; width: clamp(150px, 11vw, 210px); height: clamp(210px, 15.4vw, 294px); overflow: hidden; position: relative; transform-origin: center; transition: opacity .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);"></image-slot>
+          <image-slot id="{{ photo.id }}" shape="rect" fit="cover" src="{{ photo.src }}" alt="{{ photo.title }}" placeholder="Drop a photo" style="display: block; flex: none; width: clamp(150px, 11vw, 210px); height: clamp(210px, 15.4vw, 294px); overflow: hidden; position: relative; transform-origin: center; transition: opacity .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);"></image-slot>
         </sc-for>
       </div>
     </div>
