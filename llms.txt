@@ -1,6 +1,6 @@
 # David Fayemi
 
-> UK-based Senior Product Designer specializing in fintech and design systems. At LemFi, David leads design for the credit suite and the next-gen design system, building credit products that include the people the system was never built for.
+> UK-based Senior Product Designer specializing in fintech and design systems. At LemFi, David joined in 2023 on remittance before moving to Credit, where he now leads design for the credit suite and the next-gen design system, building credit products that include the people the system was never built for.
 
 ## About
 
@@ -8,23 +8,23 @@ I'm a senior product designer who builds financial products for people the syste
 
 Fintech is where I've spent most of my career: remittance, credit, lending, and banking for markets where trust and clarity matter most.
 
-At LemFi I lead design for the credit suite and our next-gen design system, including extending our tooling into AI workflows so teams ship on-brand work faster.
+At LemFi I joined as a Senior Product Designer in 2023, starting on remittance before moving to Credit. I now lead design for the credit suite and our next-gen design system, including extending our tooling into AI workflows so teams ship on-brand work faster.
 
 I also host The BluePrint Series, published Road Guide to Design Systems, and mentor designers through communities like Roadtrip and HNG.
 
 ## Selected work
 
-- [LemFi Credit](https://davidfayemi.com/work/lemfi-credit.html): Lead designer of LemFi's four regulated UK credit products — an instalment card, Send Now Pay Later, Credit Monitor, and a revolving card. 16K+ users onboarded in the first year. Send Now Pay Later carries 60% of UK credit-line spend; 75% of credit customers have used it.
+- [LemFi Credit](https://davidfayemi.com/work/lemfi-credit.html): Lead designer of LemFi's four credit products — an instalment card, Send Now Pay Later, Credit Monitor, and a revolving card. 16K+ active accounts in the first year. Send Now Pay Later carries 60% of UK credit-line spend; 75% of credit customers have used it.
 - Button Tracker (LemFi, 2026): Internal tool that makes Figma a source of truth for analytics, bridging data, design, and engineering. 80–85% of engineering tracking requirements automated.
 - [Rayna UI](https://templates.raynaui.com/): Co-built open-source design system for global creators. 10K+ downloads of v1.
-- Zazuu (2022): Diaspora money-movement product. 100K users saving ~7% per transfer by designing out hidden fees.
+- Zazuu (2022): Diaspora money-movement product. 60K+ users reached by designing out hidden fees.
 - [Bele](https://www.youtube.com/watch?v=VV0CweXQllo): Zazuu's design system, unifying the product with an African visual identity.
 - [Renmoney](https://renmoney.com/): Digital banking app — loans, savings, payments. 5M+ Nigerians served.
 - SmileMoney (Renmoney, 2021): First merchant POS product for mobile money agents (0→1).
 
 ## Experience
 
-- LemFi — Senior Product Designer, Credit (2023–Present)
+- LemFi — Senior Product Designer (2023–Present)
 - Rayna UI — Design System Lead (2023–2024)
 - Zazuu — Senior Product Designer (2021–2023)
 - Renmoney — Senior Product Designer, Contract (2022)
@@ -38,7 +38,10 @@ I also host The BluePrint Series, published Road Guide to Design Systems, and me
 - Host, The BluePrint Series — podcast on design systems
 - Published, Road Guide to Design Systems
 - Co-authored, Start — book on product management
-- Mentor, Roadtrip and HNG Internship
+- Co-Founder, Batch Motion (2022–2026)
+- Mentor, Roadtrip (2021–Present)
+- Design Mentor, Reskill Americans (2021)
+- Design Mentor, HNG Internship (2020–2021)
 
 ## Fun facts
 
